@@ -7,7 +7,10 @@
 |HENRIQUE MELCHIOR GOMES | SP3013227|
 |NATALIA HARUMI NAVARENO NISHIMURA | SP3013413|
 |MIKEIAS MARQUES DA SILVA | SP3013481 |
-<br><br>
+
+
+
+
 ### Trabalho conjunto de ES4A4 e LP2A4
 
 O trabalho consiste no desenvolvimento de um jogo que coloca em pauta economia financeira. Este será voltado para o público infantil, possuindo as seguintes características básicas:
