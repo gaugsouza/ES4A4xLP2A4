@@ -8,13 +8,12 @@
 
 plugins {
     // Apply the java plugin to add support for Java
-    id 'java'
+    id 'war'
 
-    // Apply the application plugin to add support for building a CLI application
-    id 'application'
-    
     //cucumber
     id "se.thinkcode.cucumber-runner" version "0.0.8"
+
+    id 'org.gretty' version '2.3.1'
 }
 
 repositories {
@@ -25,13 +24,9 @@ repositories {
 
 dependencies {
     // This dependency is used by the application.
-    implementation 'com.google.guava:guava:28.0-jre'
-
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
-}
 
-application {
-    // Define the main class for the application
-    mainClassName = 'ES4A4xLP2A4.App'
+
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
 }
