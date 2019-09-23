@@ -16,21 +16,58 @@ plugins {
     id "org.gretty" version "2.3.1"
 }
 
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
 repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
 }
 
+test{
+    useJUnitPlatform()
+    testLogging{
+        events "passed", "skipped", "failed"
+    }
+}
+
 dependencies {
+    providedCompile 'javax.servlet:javax.servlet-api:4.0.1'
+	providedCompile 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.3'
+	
+	compile 'com.google.guava:guava:28.1-jre'
+	compile 'org.apache.commons:commons-lang3:3.9'
+	compile 'javax.servlet:jstl:1.2'
+	compile 'javax.servlet.jsp.jstl:jstl-api:1.2'    
+    
     // This dependency is used by the application.
     // Use JUnit test framework
-    testImplementation 'junit:junit:4.12'
+    testImplementation('org.junit.jupiter:junit-jupiter:5.5.1')
+  	testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.5.1")
 
-
-    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    testImplementation 'io.cucumber:cucumber-java:4.7.2'
+    testImplementation 'io.cucumber:cucumber-junit:4.7.2'
 }
 
 gretty{
-    contextPath '/' 
+    contextPath '/'
+}
+
+configurations{
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+task cucumber2(){
+    dependsOn assemble, compileTestJava
+    doLast{
+        javaexec{
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--glue', 'ES4A4xLP2A4.cucumber', 'src/test/resources']
+        }
+    }
 }
