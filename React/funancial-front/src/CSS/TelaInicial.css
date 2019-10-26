@@ -1,5 +1,7 @@
 .telaInicial {position: relative;}
-.secao_cadastro {width: 0; position: relative; top: 388px; left: 80px;}
+.secao_cadastro {width: 0;position: relative;top: 388px;left: 80px;transform: translateY(-40px);transition: 0.3s;opacity: 0;}
+.secao_cadastro.active{opacity:  1; transform: translateY(0)}
+
 .infos_jogador {display: grid;grid-template-columns: 1fr 1fr; grid-gap: 20px;width: 418px; position: relative; right: -775px; top: 5px;}
 
 .btn {background: #D9F9FF; font-size: 20px;transition: 0.3s;padding: 5px 14px;display: block; width: 150px;text-align: center;margin: 8px;border: 2px solid #458C99; border-radius: 5px;}
