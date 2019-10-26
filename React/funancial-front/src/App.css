@@ -1,4 +1,8 @@
-.App {
+#root{background-color: #000;}
+
+span{cursor: pointer;}
+.gameBg{background-image: url("Imagens/composition-24.png");width: 100%;max-width: 1200px;margin: 0 auto;height: 650px;background-size: cover;background-repeat: no-repeat;}
+/*.App {
   text-align: center;
 }
 
@@ -21,4 +25,4 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
+}*/

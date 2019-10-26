@@ -1,0 +1,13 @@
+.telaInicial {position: relative;}
+.secao_cadastro {width: 0; position: relative; top: 388px; left: 80px;}
+.infos_jogador {display: grid;grid-template-columns: 1fr 1fr; grid-gap: 20px;width: 418px; position: relative; right: -775px; top: 5px;}
+
+.btn {background: #D9F9FF; font-size: 20px;transition: 0.3s;padding: 5px 14px;display: block; width: 150px;text-align: center;margin: 8px;border: 2px solid #458C99; border-radius: 5px;}
+.btn.cadastro {top: 50px;}
+.btn.login {top: 0px;}
+.btn.jogar {position: absolute;top: 210px; left: 80px;width: 230px; padding: 20px 40px; font-size: 30px; border-radius: 50px;background: #FF9B99;border-color: #FF9B99;    color: #FFF;}
+.secao_cadastro .btn {background: #458C99; color: #fff;width: 210px;    padding: 11px 12px;font-size: 30px;}
+
+.btn:hover{background: #78aab3;color: #FFF}
+.btn.jogar:hover {background: #ffc5c4; color: #FFF2F2;}
+.link.sobre { position: absolute; left: 856px; top: 286px;transform: rotate(90deg); color: red;}
