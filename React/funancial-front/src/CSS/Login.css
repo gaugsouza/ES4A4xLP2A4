@@ -1,0 +1,11 @@
+.form_container {width: 340px; position: absolute; top: 150px;  left: 120px;}
+.form_container > h2 {text-align: center;font-size: 30px;}
+.form_container form label {display: grid; margin-bottom: 10px;font-size: 18px;}
+
+.form_container input[type="text"], .form_container input[type="password"] { padding: 3px 1px;}
+
+.links-cadastro{width: 100%}
+.btn.form-submit {font-size: 20px; margin: 15px auto;}
+.links-cadastro { width: 100%;  text-align: center;}
+.links-cadastro a {text-decoration: underline;}
+.links-cadastro a:hover{font-style: italic;}

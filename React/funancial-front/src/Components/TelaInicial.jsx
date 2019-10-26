@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './TelaInicial.css';
+import '../CSS/TelaInicial.css';
 import { Link } from 'react-router-dom';
 class TelaInicial extends Component{
     render(){

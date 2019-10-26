@@ -4,6 +4,7 @@ import Login from './Components/Login';
 import Estatisticas from './Components/Estatisticas';
 import Jogo from './Components/Jogo';
 import TelaInicial from './Components/TelaInicial';
+import Perfil from './Components/Perfil'
 import React, { Component } from 'react';
 import './App.css';
 import {  BrowserRouter, Route, Switch } from 'react-router-dom';
@@ -13,14 +14,14 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App gameBg">
-          <TelaInicial/>
           <Switch>
             <Route exact path='/' component={TelaInicial} />
-            <Route path='/jogo' component={Jogo} />
+            <Route path='/jogar' component={Jogo} />
             <Route path='/cadastro' component={Cadastro} />
             <Route path='/login' component={Login} />
             <Route path='/estatisticas' component={Estatisticas} />
             <Route path='/sobre' component={Sobre} />
+            <Route path='/perfil' component={Perfil} />
           </Switch>
         </div>
       </BrowserRouter>
