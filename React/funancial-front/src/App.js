@@ -8,20 +8,46 @@ import Perfil from './Components/Perfil'
 import React, { Component } from 'react';
 import './App.css';
 import {  BrowserRouter, Route, Switch } from 'react-router-dom';
+import CadastroSucesso from './Components/CadastroSucesso';
 
 class App extends Component {
+  state = {
+    //Depois essa informação vai vir do banco
+    usuarios:[],
+    usuarioLogado:{}
+  }
+  addUsuario  = usuario =>{
+    usuario.id = Math.floor(Math.random()*999999999);
+    let usuarios = [...this.state.usuarios, usuario];
+    this.setState({
+      usuarios
+    });
+    console.log(this.state.usuarios);
+  }
+  logar = usuario =>{
+    this.setState({
+      usuarioLogado:usuario
+    })
+  }
   render() {
     return (
       <BrowserRouter>
         <div className="App gameBg">
           <Switch>
-            <Route exact path='/' component={TelaInicial} />
+            <Route exact path='/' render={(props)=>(<TelaInicial {...props} usuarioLogado={this.state.usuarioLogado}/>)} />
             <Route path='/jogar' component={Jogo} />
-            <Route path='/cadastro' component={Cadastro} />
-            <Route path='/login' component={Login} />
+
+            <Route path='/cadastro' 
+                render={(props) =>
+                (<Cadastro {...props} addUsuario={this.addUsuario}/>)} />
+
+            <Route path='/login' 
+                render={(props) =>(<Login {...props} usuarios={this.state.usuarios} logar={this.logar}/>)} />
+
             <Route path='/estatisticas' component={Estatisticas} />
             <Route path='/sobre' component={Sobre} />
-            <Route path='/perfil' component={Perfil} />
+            <Route path='/perfil/:id' render={(props) =>(<Perfil {...props} usuario={this.state.usuarioLogado}/>)} />
+            <Route path='/cadastroSucesso' component={CadastroSucesso} />
           </Switch>
         </div>
       </BrowserRouter>
