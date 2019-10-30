@@ -7,9 +7,15 @@ import {exibirMenu} from '../JS/TelaInicial'
 //E deixar visível alguns só se usuario estiver logado
 class TelaInicial extends Component{
     handleClick = (e) =>{
-        //TODO: Verificação se usuário está logado ou não.
+        //TODO: Criar sessão para usuário
         e.preventDefault();
-        exibirMenu('secao_cadastro');
+        console.log(this.props.usuarioLogado.id)
+        if(this.props.usuarioLogado.id !== undefined && this.props.usuarioLogado.id !== null){
+            this.props.history.push('/jogar');
+        }else{
+            exibirMenu('secao_cadastro');
+        }
+        
     }
     render(){
         return(
