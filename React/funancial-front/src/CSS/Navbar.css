@@ -1,0 +1,4 @@
+.navbar { display: grid; grid-template-columns: 1fr 1fr; width: 100%; max-width: 1000px; margin: 0 auto; }
+.brand-logo{display: block;width: 40%;}
+.brand-logo img{display: block; width: 100%;}
+.menu-direita { width: 85%; justify-self: right; display: grid; grid-template-columns: 1fr 1fr; list-style: none; }

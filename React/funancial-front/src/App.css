@@ -3,6 +3,8 @@ a{text-decoration: none; color: inherit;}
 
 span{cursor: pointer;}
 .gameBg{background-image: url("Imagens/composition-24.png");width: 100%;max-width: 1200px;margin: 0 auto;height: 650px;background-size: cover;background-repeat: no-repeat;position: relative;}
+
+.container { width: 100%; max-width: 1200px; margin: 0 auto; position: relative; }
 /*.App {
   text-align: center;
 }

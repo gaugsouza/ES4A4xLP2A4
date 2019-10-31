@@ -12,4 +12,4 @@
 
 .btn:hover{background: #78aab3;color: #FFF}
 .btn.jogar:hover {background: #ffc5c4; color: #FFF2F2;}
-.link.sobre { position: absolute; left: 856px; top: 286px;transform: rotate(90deg); color: red;}
+.link.sobre {    position: absolute; left: 856px; top: 165px; transform: rotate(90deg); color: red;}
