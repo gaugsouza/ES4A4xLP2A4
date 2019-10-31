@@ -1,18 +1,19 @@
-package com.projeto.funancial.model;
-
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
+package com.projeto.funancial.canonical;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Usuario {
-	@Id 
-	private ObjectId _id;
+@Data
+@Builder
+public class UsuarioCanonical { //extends Canonical { 
+	/**
+	 * 
+	 */
+	private int id;
 	private String nome;
 	private String sobrenome;
 	private String email;
