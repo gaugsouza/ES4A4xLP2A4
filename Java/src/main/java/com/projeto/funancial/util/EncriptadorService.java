@@ -11,11 +11,23 @@ import javax.crypto.spec.PBEKeySpec;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
-
+/**
+ * @author https://howtodoinjava.com/security/how-to-generate-secure-password-hash-md5-sha-pbkdf2-bcrypt-examples/
+ */
 @Service
 public class EncriptadorService {
 	private static final Logger logger = LogManager.getLogger();
 	
+	/**
+     * O método getSenhaEncriptada é utilizado para criptografar a senha informada no padrão
+     * PBKDF2WithHmacSHA1 para que a mesma seja inserida com segurança no repositório de dados.
+     *
+     * @param String senha - A senha que será criptografada
+     * @return String  - A senha após ser criptografada
+     *
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     */
 	public String getSenhaEncriptada(String senha) {
 		int iterations = 1000;
 	    char[] chars = senha.toCharArray();
@@ -36,6 +48,18 @@ public class EncriptadorService {
 	    return senha;	    
 	}
 	
+	 /**
+     * O método validaSenha é responsável por verificar se a senha informada é igual à senha
+     * armazenada no repositório.
+     *
+     * @param String senhaOriginal - A senha informada pelo usuário
+     * @param String senhaArmazenada - A senha armazenada no repositório
+     *
+     * @return boolean - A resposta da validação (true = válida, false = inválida)
+     *
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     */
 	public boolean validaSenha(String senhaOriginal, String senhaArmazenada) {
 		String[] parts = senhaArmazenada.split(":");
         int iterations = Integer.parseInt(parts[0]);
@@ -62,13 +86,26 @@ public class EncriptadorService {
         return false;
     }
     	
+	/**
+     * O método getSalt é responsável por gerar o salt utilizado durante o processo de 
+     * encriptação da chave
+     *
+     * @return byte[] - O salt gerado
+     * @throws NoSuchAlgorithmException
+     */
 	private byte[] getSalt() throws NoSuchAlgorithmException {
 		SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
 	    byte[] salt = new byte[16];
 	    sr.nextBytes(salt);
 	    return salt;
 	}
-	     
+	
+	/**
+     * O método toHex é utilizado para converter byte[] para objetos String
+     *
+     * @param array   - O byte[] que será convertido
+     * @return String - O byte[] convertido para String
+     */
 	private String toHex(byte[] array) throws NoSuchAlgorithmException {
 		BigInteger bi = new BigInteger(1, array);
 	    String hex = bi.toString(16);
@@ -80,6 +117,12 @@ public class EncriptadorService {
 	    }
 	}
 	
+	/**
+    * O método fromHex é utilizado para converter objetos String para byte[]
+    *
+    * @param hex     - A String que será convertida
+    * @return byte[] - A String convertida para byte[]
+    */
 	private byte[] fromHex(String hex) throws NoSuchAlgorithmException {
         byte[] bytes = new byte[hex.length() / 2];
         for(int i = 0; i<bytes.length ;i++) {

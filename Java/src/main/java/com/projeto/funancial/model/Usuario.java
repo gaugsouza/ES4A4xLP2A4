@@ -8,6 +8,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * A classe <code>Usuario</code> é um POJO (Plain Old Java Object) para representar 
+ * a collection funancial.usuario do MongoDB.
+ *
+ * @author guilhermeguis@outlook.com
+ * @version 1.0
+ * @since JDK1.8
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
