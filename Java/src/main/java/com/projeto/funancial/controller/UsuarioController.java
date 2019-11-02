@@ -32,12 +32,16 @@ import com.projeto.funancial.util.EncriptadorService;
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
-	@Autowired
 	private UsuarioService service;
 	@Autowired
 	private EncriptadorService encriptadorService;	
 	@Autowired
 	private UsuarioTransformation transformation;
+	
+	public UsuarioController(UsuarioService service) {
+		this.service = service;
+	}
+	
 	/**
 	 * Retorna todos os usuários registrados no banco
 	 * 
@@ -51,9 +55,9 @@ public class UsuarioController {
 				.findAll()
 				.stream()
 				.collect(Collectors.toList()));
-		if(!usuariosCanonical.isEmpty())
-			return new ResponseEntity<>(usuariosCanonical, HttpStatus.OK);
-		return new ResponseEntity<>(usuariosCanonical, HttpStatus.NO_CONTENT);
+		if(usuariosCanonical.isEmpty())
+			return new ResponseEntity<>(usuariosCanonical, HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(usuariosCanonical, HttpStatus.OK);
 	}
 	/**
 	 * Retorna o usuário com o id informado do banco
@@ -64,11 +68,12 @@ public class UsuarioController {
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<UsuarioCanonical> getUsuarioById(@PathVariable("id") ObjectId id) {
 		Usuario usuario = service.findBy_Id(id);
-		if(usuario != null) {
-			UsuarioCanonical usuarioCanonical = transformation.convert(usuario);
-			return new ResponseEntity<>(usuarioCanonical, HttpStatus.OK);
-		}			
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		if(usuario == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}	
+		UsuarioCanonical usuarioCanonical = transformation.convert(usuario);
+		return new ResponseEntity<>(usuarioCanonical, HttpStatus.OK);
+		
 	}
 	/**
 	 * Salva um usuário no banco de dados
@@ -80,10 +85,10 @@ public class UsuarioController {
 	public ResponseEntity<UsuarioCanonical> createUsuario(@RequestBody UsuarioCanonical usuarioCanonical) {
 		Usuario usuario = transformation.convert(usuarioCanonical);
 		String senhaEncriptada = encriptadorService.getSenhaEncriptada(usuario.getSenha());
-		if(senhaEncriptada.equals(usuario.getSenha())) {
+		if(senhaEncriptada.equals(usuario.getSenha()))
 			return new ResponseEntity<>(usuarioCanonical, 
 					HttpStatus.INTERNAL_SERVER_ERROR);
-		}		
+		
 		usuario.set_id(ObjectId.get());
 		usuario.setSenha(senhaEncriptada);
 		service.save(usuario);
@@ -100,13 +105,14 @@ public class UsuarioController {
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<UsuarioCanonical> modifyUsuario(@PathVariable("id") ObjectId id,
 			@RequestBody UsuarioCanonical usuarioCanonical) {
-		if(getUsuarioById(id) != null) {
-			Usuario usuario = transformation.convert(usuarioCanonical);
-			usuario.set_id(id);
-			usuario = service.save(usuario);					
-			return new ResponseEntity<>(transformation.convert(usuario), HttpStatus.OK);
-		}
-		return new ResponseEntity<>(usuarioCanonical, HttpStatus.NOT_FOUND);
+		if(getUsuarioById(id) != null) 
+			return new ResponseEntity<>(usuarioCanonical, HttpStatus.NOT_FOUND);
+		
+		Usuario usuario = transformation.convert(usuarioCanonical);
+		usuario.set_id(id);
+		usuario = service.save(usuario);
+		
+		return new ResponseEntity<>(transformation.convert(usuario), HttpStatus.OK);
 	}
 	/**
 	 * Remove o usuário do banco de dados
@@ -115,7 +121,7 @@ public class UsuarioController {
 	 * @return ResponseEntity - Status HTTP 
 	 */
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<?> delete(@PathVariable ObjectId id) {
+	public ResponseEntity<?> deleteUsuario(@PathVariable ObjectId id) {
 		try {
 			Usuario usuario = transformation.convert(getUsuarioById(id).getBody());
 			service.delete(usuario);

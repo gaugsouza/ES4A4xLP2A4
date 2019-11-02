@@ -37,18 +37,27 @@ public class UsuarioService {
     /**
      * Encontra um usuário por seu Id.
      *
-     * @param id - A identificação do usuário
+     * @param ObjectId _id - A identificação do usuário
      * @return Usuario - O usuário se existir
      */
     public Usuario findBy_Id(ObjectId _id) {
     	return usuarioRepository.findBy_id(_id);
     }
 
-    
+    /**
+     * Salva um usuário no banco de dados
+     *
+     * @param Usuario usuario  - O usuário que será salvo no banco de dados
+     * @return Usuario - O usuário salvo.
+     */
     public Usuario save(Usuario usuario) {
     	return usuarioRepository.save(usuario);
     }
-    
+    /**
+     * Deleta um usuário no banco de dados
+     *
+     * @param Usuario usuario - o usuário que será deletado.
+     */
     public void delete(Usuario usuario) {
     	usuarioRepository.delete(usuario);
     }
