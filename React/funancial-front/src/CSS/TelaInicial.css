@@ -1,6 +1,21 @@
-.telaInicial {position: relative;}
-.secao_cadastro {width: 0;position: relative;top: 388px;left: 80px;transform: translateY(-40px);transition: 0.3s;opacity: 0;}
-.secao_cadastro.active{opacity:  1; transform: translateY(0)}
+body{
+    background:#3D49FF;
+}
+.tela-inicial{width: 100%; height: 100%;}
+.floor{bottom: 0; width: 100%; height: 40px; background: #996A95;}
+.container{height: 90%;width: 80%; bottom:0; margin:auto; left: 0; right:0}
+.door { height: 100%; width: 30%; background: #FFC163; box-shadow: inset -10px 0px 0 #daa657; border-radius: 3% 3% 0 0; }
+.door::before { width: 80%; height: 90%; margin: auto; left: 0; right: 0; top: 5%; border: 2px solid #bd8d45; }
+.door:after { border: 2px solid #bd8d45; width: 5%; height: 3%; border-radius: 50%; top: 45%; right: 15%; box-shadow: inset -5px -4px 0 #daa657; }
+.placa { background: #E6AE5A; padding: 5% 12%; text-decoration: none; color: #000; border-radius: 3%; box-shadow: inset -0.5px -0.5px #806032; }
+.placa.acessar { top: 15%; left: 25%; transform: rotate(-10deg); z-index:2}
+.placa.acessar::before { width: 10%; height: 30%; background: #000; top: -22%; left: 45%; border-radius: 50%; }
+.placa.acesso-link{top: 15%; left: 25%;transform: rotate(-10deg);opacity: 0;}
+.placa.acesso-link.login.active { top: 25%; transform: rotate(0deg);opacity: 1; }
+a.cadastro.placa.acesso-link.active { top: 35%; -ms-transform: rotate(0deg); transform: rotate(10deg);opacity: 1; }
+/*.telaInicial {position: relative;}
+.secao-cadastro {width: 0;position: relative;top: 388px;left: 80px;transform: translateY(-40px);transition: 0.3s;opacity: 0;}
+.secao-cadastro.active{opacity:  1; transform: translateY(0)}
 
 .infos_jogador {display: grid;grid-template-columns: 1fr 1fr; grid-gap: 20px;width: 418px; position: relative; right: -775px; top: 5px;}
 
@@ -8,8 +23,8 @@
 .btn.cadastro {top: 50px;}
 .btn.login {top: 0px;}
 .btn.jogar {position: absolute;top: 210px; left: 80px;width: 230px; padding: 20px 40px; font-size: 30px; border-radius: 50px;background: #FF9B99;border-color: #FF9B99;    color: #FFF;}
-.secao_cadastro .btn {background: #458C99; color: #fff;width: 210px;    padding: 11px 12px;font-size: 30px;}
+.secao-cadastro .btn {background: #458C99; color: #fff;width: 210px;    padding: 11px 12px;font-size: 30px;}
 
 .btn:hover{background: #78aab3;color: #FFF}
 .btn.jogar:hover {background: #ffc5c4; color: #FFF2F2;}
-.link.sobre {    position: absolute; left: 856px; top: 165px; transform: rotate(90deg); color: red;}
+.link.sobre {    position: absolute; left: 856px; top: 165px; transform: rotate(90deg); color: red;}*/

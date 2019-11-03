@@ -37,9 +37,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="App gameBg">
-          <div className="container">
-            <Navbar usuarioLogado={this.state.usuarioLogado}/>
+        <div className="App">
             <Switch>
               <Route exact path='/' render={(props)=>(<TelaInicial {...props} usuarioLogado={this.state.usuarioLogado}/>)} />
               <Route path='/cadastro' render={(props) =>(<Cadastro {...props} addUsuario={this.addUsuario}/>)} />
@@ -51,7 +49,6 @@ class App extends Component {
               <Route path='/jogar' component={Jogo} />
               <Route component={NotFound} />
             </Switch>
-            </div>
         </div>
       </BrowserRouter>
     );

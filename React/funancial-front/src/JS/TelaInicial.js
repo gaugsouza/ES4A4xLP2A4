@@ -1,3 +1,6 @@
 export const exibirMenu = (className) =>{
-    document.getElementsByClassName(className)[0].classList.add('active');
+    let elements = document.getElementsByClassName(className);
+    for(let i = 0; i < elements.length; i++){
+        elements[i].classList.add('active');
+    }
 }
