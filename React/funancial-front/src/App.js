@@ -5,7 +5,6 @@ import Estatisticas from './Components/Estatisticas';
 import Jogo from './Components/Jogo';
 import TelaInicial from './Components/TelaInicial';
 import Perfil from './Components/Perfil';
-import Navbar from './Components/Navbar';
 import CadastroSucesso from './Components/CadastroSucesso';
 import NotFound from './Components/NotFound';
 
