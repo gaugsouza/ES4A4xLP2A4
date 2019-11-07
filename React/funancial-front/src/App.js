@@ -1,6 +1,4 @@
 import Sobre from './Components/Sobre';
-import Cadastro from './Components/Cadastro';
-import Login from './Components/Login';
 import Estatisticas from './Components/Estatisticas';
 import Jogo from './Components/Jogo';
 import TelaInicial from './Components/TelaInicial';
@@ -38,9 +36,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
             <Switch>
-              <Route exact path='/' render={(props)=>(<TelaInicial {...props} usuarioLogado={this.state.usuarioLogado}/>)} />
-              <Route path='/cadastro' render={(props) =>(<Cadastro {...props} addUsuario={this.addUsuario}/>)} />
-              <Route path='/login' render={(props) =>(<Login {...props} usuarios={this.state.usuarios} logar={this.logar}/>)} />
+              <Route exact path='/' render={(props)=>(<TelaInicial {...props} usuarioLogado={this.state.usuarioLogado} addUsuario={this.addUsuario}/>)} />
               <Route path='/estatisticas' component={Estatisticas} />
               <Route path='/cadastroSucesso' component={CadastroSucesso} />
               <Route path='/perfil/:id' render={(props) =>(<Perfil {...props} usuario={this.state.usuarioLogado}/>)} />

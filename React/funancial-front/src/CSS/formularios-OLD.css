@@ -1,0 +1,25 @@
+/*.form-container { top: 16%; left: 16%; width: 80%; height: 41%; animation: ani-form 0.5s ease}
+.form-container h2 { left: 0; right: 0; text-align: center; font-size: 210%; color: #FFF; }
+*/
+
+
+
+.form-container {width: 80%; height: 41%; position: absolute;top: 16%; left: 16%; transition: 0.3s; animation: ani-form 0.3s linear;}
+.form-container *{position: relative;}
+.form-container > h2 {text-align: center;font-size: 30px;}
+.form-container form label {display: grid; margin-bottom: 10px;font-size: 18px;}
+
+@keyframes ani-form{
+    from{transform: translateX(-20px);opacity: 0;}
+    to{transform: translateX(0);opacity: 1;}
+}
+
+.form-container input[type="text"], .form_container input[type="password"] { padding: 3px 1px;}
+
+.links-cadastro{width: 100%}
+.btn.form-submit {font-size: 20px; margin: 15px auto;}
+.links-cadastro { width: 100%;  text-align: center;}
+.links-cadastro a {text-decoration: underline;}
+.links-cadastro a:hover{font-style: italic;}
+
+.aviso{color:red}

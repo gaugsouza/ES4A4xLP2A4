@@ -38,7 +38,7 @@ class TelaInicial extends Component{
                     <div className="door">
                     <Link to="/jogar" className="acessar placa" onClick={this.handleClick}>Acessar</Link>
                     <a className="login placa acesso-link" onClick={()=>{this.displayComponent(<Login/>)}}>Login</a>
-                    <a className="cadastro placa acesso-link" onClick={()=>{this.displayComponent(<Cadastro/>)}}>Cadastro</a>
+                    <a className="cadastro placa acesso-link" onClick={()=>{this.displayComponent(<Cadastro addUsuario={this.props.addUsuario} history={this.props.history}/>)}}>Cadastro</a>
                     </div>
                     <div className="shelf-container">
                         <div className="shelf">
