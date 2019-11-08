@@ -2,6 +2,7 @@ package com.projeto.funancial.model;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,8 +24,9 @@ import lombok.NoArgsConstructor;
 public class Usuario {
 	@Id 
 	private ObjectId _id;
+	@Indexed(unique=true)
+	private String email;
 	private String nome;
 	private String sobrenome;
-	private String email;
 	private String senha;
 }

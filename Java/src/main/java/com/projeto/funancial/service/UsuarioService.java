@@ -2,6 +2,7 @@ package com.projeto.funancial.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ public class UsuarioService {
     public List<Usuario> findAll(){
     	List<Usuario> usuarios = new ArrayList<>();
         this.usuarioRepository.findAll().forEach(usuarios :: add);
+        
         return usuarios;
     }
     
@@ -38,10 +40,20 @@ public class UsuarioService {
      * Encontra um usuário por seu Id.
      *
      * @param ObjectId _id - A identificação do usuário
-     * @return Usuario - O usuário se existir
+     * @return Usuario - O usuário, se existir
      */
     public Usuario findBy_Id(ObjectId _id) {
     	return usuarioRepository.findBy_id(_id);
+    }
+    
+    /**
+     * Encontra um usuário por seu Email.
+     *
+     * @param String email - O email do usuário
+     * @return Usuario - O usuário, se existir
+     */
+    public Usuario findByEmail(String email) {
+    	return usuarioRepository.findByEmail(email);
     }
 
     /**
@@ -51,7 +63,9 @@ public class UsuarioService {
      * @return Usuario - O usuário salvo.
      */
     public Usuario save(Usuario usuario) {
-    	return usuarioRepository.save(usuario);
+    	usuario = usuarioRepository.save(usuario);
+    	
+    	return usuario;
     }
     /**
      * Deleta um usuário no banco de dados
