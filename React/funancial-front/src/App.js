@@ -36,7 +36,8 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
             <Switch>
-              <Route exact path='/' render={(props)=>(<TelaInicial {...props} usuarioLogado={this.state.usuarioLogado} addUsuario={this.addUsuario}/>)} />
+              <Route exact path='/' render={(props)=>(<TelaInicial {...props} usuarioLogado={this.state.usuarioLogado} 
+                                                        addUsuario={this.addUsuario} logar={this.logar} usuarios={this.state.usuarios} />)} />
               <Route path='/estatisticas' component={Estatisticas} />
               <Route path='/cadastroSucesso' component={CadastroSucesso} />
               <Route path='/perfil/:id' render={(props) =>(<Perfil {...props} usuario={this.state.usuarioLogado}/>)} />

@@ -26,6 +26,7 @@ class TelaInicial extends Component{
         let forceRender = document.getElementsByClassName('force-render')[0];
         ReactDOM.render(<Router>{elementRender}</Router>, forceRender);
     }
+
     render(){
         return(
             <div className="tela-inicial">
@@ -37,8 +38,12 @@ class TelaInicial extends Component{
                 <div className="container">
                     <div className="door">
                     <Link to="/jogar" className="acessar placa" onClick={this.handleClick}>Acessar</Link>
-                    <a className="login placa acesso-link" onClick={()=>{this.displayComponent(<Login/>)}}>Login</a>
-                    <a className="cadastro placa acesso-link" onClick={()=>{this.displayComponent(<Cadastro addUsuario={this.props.addUsuario} history={this.props.history}/>)}}>Cadastro</a>
+                    <a className="login placa acesso-link" onClick={()=>{
+                            this.displayComponent(<Login logar={this.props.logar} usuarios={this.props.usuarios} history={this.props.history}/>)
+                            }}>Login</a>
+                    <a className="cadastro placa acesso-link" onClick={()=>{
+                                this.displayComponent(<Cadastro addUsuario={this.props.addUsuario} history={this.props.history}/>)
+                            }}>Cadastro</a>
                     </div>
                     <div className="shelf-container">
                         <div className="shelf">

@@ -1,4 +1,53 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import '../CSS/Formularios.css';
+const Login = ({logar, usuarios, history}) =>{
+    const [usuario, setUsuario] = useState({
+        email:null,
+        senha:null,
+    });
+    const [errMsg, setErrMsg] = useState(null);
+
+    const handleChange = e =>{
+        setUsuario({
+            ...usuario,
+            [e.target.name]:e.target.value
+        });
+    }
+
+    const handleSubmit = e =>{
+        e.preventDefault();
+        let {email, senha} = usuario;
+        let usuarioLogado = usuarios.filter(usuario => usuario.email === email && usuario.senha === senha)[0];
+
+        if(usuarioLogado === null || usuarioLogado === undefined){
+            setErrMsg( 'Email ou senha incorretos');
+            return false;
+        }
+
+        logar(usuarioLogado);
+        history.push('/jogar');
+        
+    }
+
+    return(
+        <div className="form-container">
+            <h2>Login</h2>
+            <form method="post" action="/jogar" onSubmit={handleSubmit}>
+                <label>Email <input type="text" name="email" onChange={handleChange}/></label>
+                <label>Senha <input type="password" name="senha" onChange={handleChange}/></label>
+                <span className="aviso">{errMsg}</span>
+                <input type="submit" className="btn form-submit" value="Entrar"/>
+                <div className="links-cadastro"><Link to="#">Esqueceu a senha?</Link> <br/><Link to="/cadastro">Cadastrar</Link></div>
+            </form>
+        </div>
+    );
+
+}
+
+export default Login;
+
+/*import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../CSS/Formularios.css'
 class Login extends Component{
@@ -48,4 +97,4 @@ class Login extends Component{
     }
 }
 
-export default Login;
+export default Login;*/
