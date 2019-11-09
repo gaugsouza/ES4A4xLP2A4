@@ -21,8 +21,11 @@ import com.projeto.funancial.model.Usuario;
  */
 @Service
 public class UsuarioTransformation {
-	@Autowired
 	private UsuarioBeanUtil usuarioBeanUtil;
+	
+	public UsuarioTransformation(UsuarioBeanUtil usuarioBeanUtil) {
+		this.usuarioBeanUtil = usuarioBeanUtil;
+	}
 	
 	/**
      * Transformará um objeto do tipo UsuarioCanonical em um objeto do tipo Usuario

@@ -84,11 +84,11 @@ public class UsuarioController {
 		}
 		
 		usuarioCanonical.setSenha(senhaEncriptada);
+		usuarioCanonical.set_id(ObjectId.get());
 		
-		Usuario usuario = transformation.convert(usuarioCanonical);
-		usuario.set_id(ObjectId.get());		
+		service.save(transformation.convert(usuarioCanonical));
 				
-		return new ResponseEntity<>(transformation.convert(service.save(usuario)), HttpStatus.CREATED);
+		return new ResponseEntity<>(usuarioCanonical, HttpStatus.CREATED);
 	}
 	/**
 	 * Atualiza o usuário com o ID informado no banco de dados
@@ -124,13 +124,14 @@ public class UsuarioController {
 	 * @return ResponseEntity - Status HTTP 
 	 */
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<?> deleteUsuario(@PathVariable ObjectId id) {
-		Optional<Usuario> usuario = Optional.ofNullable(service.findBy_Id(id));
+	public ResponseEntity<UsuarioCanonical> deleteUsuario(@PathVariable ObjectId id) {
+		Optional<Usuario> usuario = Optional.ofNullable(service.findBy_Id(id));		
 		
 		if(!usuario.isPresent()) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		service.delete(usuario.get());
-		return new ResponseEntity<>(HttpStatus.OK);			
+		
+		return new ResponseEntity<>(transformation.convert(
+				service.deleteBy_id(usuario.get().get_id())), HttpStatus.OK);			
 	}
 }

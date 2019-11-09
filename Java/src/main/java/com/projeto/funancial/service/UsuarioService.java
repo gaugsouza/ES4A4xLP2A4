@@ -2,10 +2,8 @@ package com.projeto.funancial.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.projeto.funancial.model.Usuario;
@@ -21,9 +19,11 @@ import com.projeto.funancial.repository.UsuarioRepository;
  */
 @Service
 public class UsuarioService {
-    @Autowired 
     private UsuarioRepository usuarioRepository;
 	
+    public UsuarioService(UsuarioRepository usuarioRepository) {
+    	this.usuarioRepository = usuarioRepository;
+    }
     /**
      * Encontra todos os usuários da collection no banco.
      *
@@ -42,18 +42,8 @@ public class UsuarioService {
      * @param ObjectId _id - A identificação do usuário
      * @return Usuario - O usuário, se existir
      */
-    public Usuario findBy_Id(ObjectId _id) {
-    	return usuarioRepository.findBy_id(_id);
-    }
-    
-    /**
-     * Encontra um usuário por seu Email.
-     *
-     * @param String email - O email do usuário
-     * @return Usuario - O usuário, se existir
-     */
-    public Usuario findByEmail(String email) {
-    	return usuarioRepository.findByEmail(email);
+    public Usuario findBy_Id(ObjectId id) {
+    	return usuarioRepository.findBy_id(id);
     }
 
     /**
@@ -62,17 +52,15 @@ public class UsuarioService {
      * @param Usuario usuario  - O usuário que será salvo no banco de dados
      * @return Usuario - O usuário salvo.
      */
-    public Usuario save(Usuario usuario) {
-    	usuario = usuarioRepository.save(usuario);
-    	
-    	return usuario;
+    public Usuario save(Usuario usuario) {   	
+    	return usuarioRepository.save(usuario);
     }
     /**
      * Deleta um usuário no banco de dados
      *
      * @param Usuario usuario - o usuário que será deletado.
      */
-    public void delete(Usuario usuario) {
-    	usuarioRepository.delete(usuario);
+    public Usuario deleteBy_id(ObjectId id) {
+    	return usuarioRepository.deleteBy_id(id);
     }
 }

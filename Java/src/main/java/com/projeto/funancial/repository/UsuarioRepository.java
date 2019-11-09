@@ -16,5 +16,5 @@ import com.projeto.funancial.model.Usuario;
  **/
 public interface UsuarioRepository extends MongoRepository<Usuario, String>{
 	Usuario findBy_id(ObjectId id);
-	Usuario findByEmail(String email);
+	Usuario deleteBy_id(ObjectId id);
 }
