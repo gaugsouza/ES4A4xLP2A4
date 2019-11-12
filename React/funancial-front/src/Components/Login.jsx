@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../CSS/Formularios.css';
+import axios from 'axios';
 const Login = ({logar, usuarios, history}) =>{
     const [usuario, setUsuario] = useState({
         email:null,
         senha:null,
     });
     const [errMsg, setErrMsg] = useState(null);
-
+    const API_URL = 'http://localhost:3000/usuarios';
     const handleChange = e =>{
         setUsuario({
             ...usuario,
@@ -17,6 +18,23 @@ const Login = ({logar, usuarios, history}) =>{
 
     const handleSubmit = e =>{
         e.preventDefault();
+        let usuariosApi = [];
+        axios.get(API_URL)
+        .then(res =>{
+            usuariosApi = [...usuariosApi, res.data];
+        });
+        console.log(usuariosApi);
+        console.log(API_URL);
+        let {email, senha} = usuario;
+        let usuarioALogar = usuariosApi.filter(usuario => usuario.email === email && usuario.senha === senha)[0];
+
+        if(usuarioALogar === null || usuarioALogar === undefined){
+            setErrMsg( 'Email ou senha incorretos');
+            return false;
+        }
+        logar(usuarioALogar);
+        history.push('/jogar');
+        /*
         let {email, senha} = usuario;
         let usuarioLogado = usuarios.filter(usuario => usuario.email === email && usuario.senha === senha)[0];
 
@@ -26,7 +44,7 @@ const Login = ({logar, usuarios, history}) =>{
         }
 
         logar(usuarioLogado);
-        history.push('/jogar');
+        history.push('/jogar');*/
         
     }
 
@@ -37,7 +55,7 @@ const Login = ({logar, usuarios, history}) =>{
                 <label>Email <input type="text" name="email" onChange={handleChange}/></label>
                 <label>Senha <input type="password" name="senha" onChange={handleChange}/></label>
                 <span className="aviso">{errMsg}</span>
-                <input type="submit" className="btn form-submit" value="Entrar"/>
+                <input type="submit" className="btn form-submit" value="Entrar" name="login"/>
                 <div className="links-cadastro"><Link to="#">Esqueceu a senha?</Link> <br/><Link to="/cadastro">Cadastrar</Link></div>
             </form>
         </div>
