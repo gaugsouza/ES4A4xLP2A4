@@ -1,4 +1,4 @@
-const FakeRest = require('fakerest');
+/*const FakeRest = require('fakerest');
 const fetchMock = require('fetch-mock');
 const {usuario} = require('../data');
 
@@ -6,7 +6,14 @@ const restServer = new FakeRest.FetchServer('http://localhost:3000/usuarios');
 restServer.init(usuario);
 // plug the restServer in front of fetch()
 fetchMock.mock('^http://localhost:3000/usuarios', restServer.getHandler());
+*/
 
+const {usuario} = require('../data');
+const  nock = require('nock');
+
+const scope = nock('http://localhost:3000')
+               .get('/usuarios')
+               .reply(200, usuario);
 
 const {Given, When, Then, AfterAll, setDefaultTimeout} = require('cucumber');
 const {Builder, By, Capabilities, Key} = require('selenium-webdriver');
@@ -47,9 +54,14 @@ Given('Usuário está na {string}',async function (string) {
    await driver.executeScript(scriptEmail);
    await driver.executeScript(scriptSenha);
  });
+
+
 When('Clicar no botão do formulário de nome {string}', async function(string){
+   nock('http://localhost:3000')
+               .get('/usuarios')
+               .reply(200, usuario);
    await driver.findElement(By.css('.form-container'))
-         .findElement(By.name(string))
+         .findElement(By.name(string)).click()
 });
 
 
