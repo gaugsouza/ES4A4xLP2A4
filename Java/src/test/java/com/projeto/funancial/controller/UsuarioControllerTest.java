@@ -14,10 +14,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.projeto.funancial.canonical.UsuarioCanonical;
+import com.projeto.funancial.exception.EncriptadorServiceException;
 import com.projeto.funancial.model.Usuario;
+import com.projeto.funancial.service.EncriptadorService;
 import com.projeto.funancial.service.UsuarioService;
 import com.projeto.funancial.transformation.UsuarioTransformation;
-import com.projeto.funancial.util.EncriptadorService;
 
 public class UsuarioControllerTest {
 	private UsuarioService svc = Mockito.mock(UsuarioService.class);
@@ -104,7 +105,7 @@ public class UsuarioControllerTest {
 	}
 
 	@Test
-	public void create_usuario_deve_retornar_usuario_criado() {
+	public void create_usuario_deve_retornar_usuario_criado() throws EncriptadorServiceException{
 		//config
 		UsuarioCanonical usuarioCanonical = new UsuarioCanonical();
 		Usuario usuario = new Usuario();
@@ -121,7 +122,7 @@ public class UsuarioControllerTest {
 	}
 	
 	@Test
-	public void create_usuario_deve_retornar_status_created() {
+	public void create_usuario_deve_retornar_status_created() throws EncriptadorServiceException{
 		//config
 		UsuarioCanonical usuarioCanonical = new UsuarioCanonical();
 		Usuario usuario = new Usuario();
@@ -136,16 +137,13 @@ public class UsuarioControllerTest {
 	}
 	
 	@Test
-	public void create_usuario_deve_retornar_usuario_incorreto_quando_mal_sucedido() {
+	public void create_usuario_deve_retornar_usuario_incorreto_quando_mal_sucedido_devido_a_execao() 
+			throws EncriptadorServiceException {
 		//config
 		UsuarioCanonical usuarioCanonical = new UsuarioCanonical();
-		Usuario usuario = new Usuario();
-		
 		usuarioCanonical.setSenha("123");
 		
-		when(this.transformation.convert(usuarioCanonical)).thenReturn(usuario);
-		when(this.encrypt.getSenhaEncriptada(usuarioCanonical.getSenha())).thenReturn(usuarioCanonical.getSenha());
-		when(this.svc.save(usuario)).thenReturn(usuario);
+		when(this.encrypt.getSenhaEncriptada(usuarioCanonical.getSenha())).thenThrow(EncriptadorServiceException.class);
 		//exec
 		ResponseEntity<UsuarioCanonical> resultado = usuarioController.createUsuario(usuarioCanonical);
 		//check
@@ -153,14 +151,13 @@ public class UsuarioControllerTest {
 	}
 
 	@Test
-	public void create_usuario_deve_retornar_status_internal_server_error_quando_encrypt_de_senha_mal_sucedido() {
+	public void create_usuario_deve_retornar_status_internal_server_error_quando_mal_sucedido_devido_execao() 
+			throws EncriptadorServiceException {
 		//config
 		UsuarioCanonical usuarioCanonical = new UsuarioCanonical();
-		Usuario usuario = new Usuario();
 		usuarioCanonical.setSenha("123");
 		
-		when(this.transformation.convert(usuarioCanonical)).thenReturn(usuario);
-		when(this.encrypt.getSenhaEncriptada(usuarioCanonical.getSenha())).thenReturn(usuarioCanonical.getSenha());
+		when(this.encrypt.getSenhaEncriptada(usuarioCanonical.getSenha())).thenThrow(EncriptadorServiceException.class);
 		//exec
 		ResponseEntity<UsuarioCanonical> resultado = usuarioController.createUsuario(usuarioCanonical);
 		//check
@@ -168,7 +165,7 @@ public class UsuarioControllerTest {
 	}
 	
 	@Test
-	public void update_usuario_deve_retornar_usuario_atualizado() {
+	public void update_usuario_deve_retornar_usuario_atualizado() throws EncriptadorServiceException {
 		//config
 		UsuarioCanonical usuarioCanonical = new UsuarioCanonical();
 		Usuario usuario = new Usuario();
@@ -188,7 +185,7 @@ public class UsuarioControllerTest {
 	}
 
 	@Test
-	public void update_usuario_deve_retornar_status_ok() {
+	public void update_usuario_deve_retornar_status_ok() throws EncriptadorServiceException{
 		//config
 		UsuarioCanonical usuarioCanonical = new UsuarioCanonical();
 		Usuario usuario = new Usuario();
@@ -240,7 +237,8 @@ public class UsuarioControllerTest {
 	}
 
 	@Test
-	public void update_usuario_deve_retornar_usuario_invalido_quando_encrypt_de_senha_mal_sucedido() {
+	public void update_usuario_deve_retornar_usuario_informado_quando_mal_sucedido_devido_execao() 
+		throws EncriptadorServiceException {
 		//config
 		UsuarioCanonical usuarioCanonical = new UsuarioCanonical();
 		Usuario usuario = new Usuario();
@@ -249,7 +247,7 @@ public class UsuarioControllerTest {
 		usuarioCanonical.setSenha("123");
 		
 		when(this.svc.findBy_Id(usuario.get_id())).thenReturn(usuario);
-		when(this.encrypt.getSenhaEncriptada(usuarioCanonical.getSenha())).thenReturn(usuarioCanonical.getSenha());
+		when(this.encrypt.getSenhaEncriptada(usuarioCanonical.getSenha())).thenThrow(EncriptadorServiceException.class);
 		//exec
 		ResponseEntity<UsuarioCanonical> resultado = 
 				usuarioController.updateUsuario(usuario.get_id(), usuarioCanonical);
@@ -258,7 +256,8 @@ public class UsuarioControllerTest {
 	}
 	
 	@Test
-	public void update_usuario_deve_retornar_status_internal_server_error_quando_encrypt_de_senha_mal_sucedido() {
+	public void update_usuario_deve_retornar_status_internal_server_error_quando_mal_sucedido_devido_execao() 
+		throws EncriptadorServiceException {
 		//config
 		UsuarioCanonical usuarioCanonical = new UsuarioCanonical();
 		Usuario usuario = new Usuario();
@@ -267,7 +266,7 @@ public class UsuarioControllerTest {
 		usuarioCanonical.setSenha("123");
 		
 		when(this.svc.findBy_Id(usuario.get_id())).thenReturn(usuario);
-		when(this.encrypt.getSenhaEncriptada(usuarioCanonical.getSenha())).thenReturn(usuarioCanonical.getSenha());
+		when(this.encrypt.getSenhaEncriptada(usuarioCanonical.getSenha())).thenThrow(EncriptadorServiceException.class);
 		//exec
 		ResponseEntity<UsuarioCanonical> resultado = 
 				usuarioController.updateUsuario(usuario.get_id(), usuarioCanonical);

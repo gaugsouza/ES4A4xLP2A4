@@ -21,6 +21,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UsuarioCanonical {
 	private ObjectId _id;
+	private String jwtToken;
 	private String nome;
 	private String sobrenome;
 	private String email;

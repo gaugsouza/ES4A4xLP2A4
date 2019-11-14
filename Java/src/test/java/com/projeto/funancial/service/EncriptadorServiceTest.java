@@ -1,9 +1,11 @@
-package com.projeto.funancial.util;
+package com.projeto.funancial.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 import org.junit.Test;
+
+import com.projeto.funancial.service.EncriptadorService;
 
 public class EncriptadorServiceTest {
 	private EncriptadorService encriptadorService = new EncriptadorService();
@@ -13,7 +15,7 @@ public class EncriptadorServiceTest {
 		//config
 		String senha = "123";
 		//exec
-		String resultado = encriptadorService.getSenhaEncriptada(senha);
+		//String resultado = encriptadorService.getSenhaEncriptada(senha);
 		//check
 		/*TODO: TESTAR EncriptadorServiceTest*/
 	}

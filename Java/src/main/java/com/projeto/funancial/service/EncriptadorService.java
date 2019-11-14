@@ -1,4 +1,4 @@
-package com.projeto.funancial.util;
+package com.projeto.funancial.service;
 
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
@@ -8,27 +8,29 @@ import java.security.spec.InvalidKeySpecException;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
+
+import com.projeto.funancial.exception.EncriptadorServiceException;
 /**
- * @author https://howtodoinjava.com/security/how-to-generate-secure-password-hash-md5-sha-pbkdf2-bcrypt-examples/
+ * A classe <code>EncriptadorService</code> para a realização de criptografia e 
+ * validação de informações criptografadas.
+ *
+ * @author Lokesh Gupta - howtodoinjava.com 
+ * @version 1.0
+ * @since JDK1.8 * 
  */
 @Service
 public class EncriptadorService {
-	private static final Logger logger = LogManager.getLogger();
-	
 	/**
      * O método getSenhaEncriptada é utilizado para criptografar a senha informada no padrão
      * PBKDF2WithHmacSHA1 para que a mesma seja inserida com segurança no repositório de dados.
      *
      * @param String senha - A senha que será criptografada
-     * @return String  - A senha após ser criptografada
+     * @return String - A senha após ser criptografada
      *
-     * @throws NoSuchAlgorithmException
-     * @throws InvalidKeySpecException
+     * @throws EncriptadorServiceException 
      */
-	public String getSenhaEncriptada(String senha) {
+	public String getSenhaEncriptada(String senha)  throws EncriptadorServiceException {
 		int iterations = 1000;
 	    char[] chars = senha.toCharArray();
 	    
@@ -40,12 +42,10 @@ public class EncriptadorService {
 		    
 		    return iterations + ":" + toHex(salt) + ":" + toHex(hash);		    
 		} catch (NoSuchAlgorithmException e) {
-			logger.error("Serviço de criptografia falhou - NoSuchAlgorithmException.\nErro: {}", e.getMessage());
+			throw new EncriptadorServiceException("Erro durante a execução do mecanismo de criptografia.", e.getCause());
 		} catch (InvalidKeySpecException  e) {
-			logger.error("Serviço de criptografia falhou - InvalidKeySpecException.\nErro: {}", e.getMessage());
+			throw new EncriptadorServiceException("Uma especifição de chave inválida foi encontrada.", e.getCause());
 		}
-	    
-	    return senha;	    
 	}
 	
 	 /**
@@ -57,10 +57,9 @@ public class EncriptadorService {
      *
      * @return boolean - A resposta da validação (true = válida, false = inválida)
      *
-     * @throws NoSuchAlgorithmException
-     * @throws InvalidKeySpecException
+     * @throws EncriptadorServiceException
      */
-	public boolean validaSenha(String senhaOriginal, String senhaArmazenada) {
+	public boolean validaSenha(String senhaOriginal, String senhaArmazenada) throws EncriptadorServiceException {
 		String[] parts = senhaArmazenada.split(":");
         int iterations = Integer.parseInt(parts[0]);
         try {
@@ -78,12 +77,10 @@ public class EncriptadorService {
             
             return diff == 0;            
 		} catch (NoSuchAlgorithmException e) {
-			logger.error("Serviço de criptografia falhou - NoSuchAlgorithmException.\nErro: {}", e.getMessage());
+			throw new EncriptadorServiceException("Erro durante a execução do mecanismo de criptografia.", e.getCause());
 		} catch (InvalidKeySpecException e) {
-			logger.error("Serviço de criptografia falhou - InvalidKeySpecException.\nErro: {}", e.getMessage());
+			throw new EncriptadorServiceException("Uma especifição de chave inválida foi encontrada.", e.getCause());
         }
-        
-        return false;
     }
     	
 	/**

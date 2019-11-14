@@ -1,6 +1,9 @@
 package com.projeto.funancial;
 
+import static com.projeto.funancial.ConfigurationPropertyFactory.getConfiguration;
+
 import org.springframework.boot.SpringApplication;
+
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
@@ -16,6 +19,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FunancialApplication {   		
 	public static void main(String[] args) {
+		getConfiguration();	
 		SpringApplication.run(FunancialApplication.class, args);	
 	}
 }
