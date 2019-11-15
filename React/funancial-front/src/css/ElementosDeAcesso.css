@@ -1,0 +1,26 @@
+.access-content {
+  width: 250px;
+  position: absolute;
+  bottom: -750px;
+  left: 30px;
+}
+
+.access-content a {
+  width: 100%;
+  display: block;
+  background: #7A7CFE;
+  color: #FFF;
+  text-decoration: none;
+  text-align: center;
+  font-size: 30px;
+  padding: 20px 0;
+  margin: 10px 0;
+  border-radius: 5px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.access-content a:hover {
+  background-color: #474afe;
+}
+/*# sourceMappingURL=ElementosDeAcesso.css.map */

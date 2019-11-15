@@ -1,0 +1,55 @@
+.links-jogo {
+  width: 648px;
+  height: 143px;
+  position: absolute;
+  right: 40px;
+  top: 79px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 28px;
+}
+
+.links-jogo div {
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.links-jogo div p {
+  text-align: center;
+  position: relative;
+  color: #FFF;
+  background-color: #6DE9AA;
+  border-radius: 50%;
+  font-size: 25px;
+  -webkit-transform: translateY(40px);
+          transform: translateY(40px);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.links-jogo div:hover p {
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
+}
+
+.links-jogo div img {
+  width: 40%;
+  -webkit-transform: translate(0, 40%);
+          transform: translate(0, 40%);
+  margin: 0 auto;
+  display: block;
+}
+
+.links-jogo div.statistics img {
+  width: 100%;
+  -webkit-transform: translateY(30%);
+          transform: translateY(30%);
+}
+
+.links-jogo div.statistics:hover p {
+  -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
+}
+/*# sourceMappingURL=GameUtils.css.map */

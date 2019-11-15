@@ -1,0 +1,49 @@
+.links-jogo {
+    width: 648px;
+    height: 143px;
+    position: absolute;
+    right: 40px;
+    top: 79px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 28px;
+
+    & div{
+        overflow: hidden;
+        cursor: pointer;
+        & p{
+            text-align: center;
+            position: relative;
+            color: #FFF;
+            background-color: #6DE9AA;
+            border-radius: 50%;
+            font-size: 25px;
+            transform: translateY(40px);
+            transition: 0.3s;
+        }
+        &:hover p{
+            transform: translateY(0px);
+        }
+
+        & img {
+            width: 40%;
+            transform: translate(0, 40%);
+            margin: 0 auto;
+            display: block;
+        }
+
+        &.statistics{
+            & img{
+                width: 100%;
+                transform: translateY(30%);
+            }
+            &:hover p{
+                transform: translateY(-20px);
+            }
+        }
+    }
+    
+    
+}
+
+

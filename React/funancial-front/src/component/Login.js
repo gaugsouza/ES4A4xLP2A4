@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 
-const Login = () => {
+const Login = ({setTitle}) => {
     useEffect(() =>{
-        document.title = "Funancial - Login";
+        setTitle('Login');
     })
     return(<div className='login'>
         Login

@@ -1,0 +1,28 @@
+$btn-bg: #7A7CFE;
+$btn-color: #FFF;
+$btn-hover-bg: darken($btn-bg, 10);
+
+.access-content {
+    width: 250px;
+    position: absolute;
+    bottom: -750px;
+    left: 30px;
+
+    & a{
+        width: 100%;
+        display: block;
+        background: $btn-bg;
+        color: $btn-color;
+        text-decoration: none;
+        text-align: center;
+        font-size: 30px;
+        padding: 20px 0;
+        margin: 10px 0;
+        border-radius: 5px;
+        transition: 0.3s;
+
+        &:hover{
+            background-color: $btn-hover-bg;
+        }
+    }
+}

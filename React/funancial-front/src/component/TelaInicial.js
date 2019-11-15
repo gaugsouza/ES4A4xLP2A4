@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-const TelaInicial = () => {
+import ElementosDeAcesso from './ElementosDeAcesso';
+import GameUtils from './GameUtils';
+const TelaInicial = ({setTitle}) => {
     useEffect(() =>{
-        document.title = "Funancial - Economy for Kids";
+        setTitle("Economy for Kids");
     })
     return(
         <div>
-            <Link to="/login">Login</Link>
-            <Link to="/cadastro">Cadastro</Link>
+            <GameUtils />
+           <ElementosDeAcesso/>
         </div>
     )
 };
