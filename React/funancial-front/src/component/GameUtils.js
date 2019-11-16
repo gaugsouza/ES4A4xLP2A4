@@ -6,11 +6,11 @@ const GameUtils = () => {
     return(
         <div className="links-jogo disabled">
             <div className="profile">
-                <img src={profileImg} />
+                <img src={profileImg} alt="Link perfil"/>
                 <p>Perfil</p>
             </div>
             <div className="statistics">
-                <img src={statistics} />
+                <img src={statistics} alt="Link estatísticas"/>
                 <p>Estatísticas</p>
             </div>
             <div className="info"></div>

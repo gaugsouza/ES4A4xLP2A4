@@ -5,11 +5,14 @@ import TelaInicial from './component/TelaInicial';
 import Login from './component/Login';
 import Cadastro from './component/Cadastro';
 import Navbar from './component/Navbar';
+import CadastroSucesso from './component/CadastroSucesso';
 function App() {
   const [title, setTitle] = useState('');
   useEffect(()=>{
     document.title = `Funancial - ${title}`;
   })
+
+  const addUsuario = usuario => {console.log(usuario)}
   return (
     <BrowserRouter>
       <Navbar title={title}/>
@@ -22,7 +25,10 @@ function App() {
               <Login setTitle={setTitle} />
           </Route>
           <Route path="/cadastro">
-              <Cadastro setTitle={setTitle} />
+              <Cadastro setTitle={setTitle} addUsuario={addUsuario}/>
+          </Route>
+          <Route path="/cadastro-sucesso">
+              <CadastroSucesso />
           </Route>
         </Switch>
       </div>

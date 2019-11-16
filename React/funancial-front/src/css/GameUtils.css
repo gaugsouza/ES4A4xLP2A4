@@ -14,24 +14,26 @@
 .links-jogo div {
   overflow: hidden;
   cursor: pointer;
+  position: relative;
 }
 
 .links-jogo div p {
   text-align: center;
-  position: relative;
-  color: #FFF;
-  background-color: #6DE9AA;
-  border-radius: 50%;
+  position: absolute;
+  color: #000;
+  background-color: #e4e4e4;
   font-size: 25px;
-  -webkit-transform: translateY(40px);
-          transform: translateY(40px);
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+  top: 0;
+  width: 100%;
+  margin: 0;
+  padding: 30% 0;
+  opacity: 0;
 }
 
-.links-jogo div:hover p {
-  -webkit-transform: translateY(0px);
-          transform: translateY(0px);
+.links-jogo div p:hover {
+  opacity: 0.8;
 }
 
 .links-jogo div img {
@@ -46,10 +48,5 @@
   width: 100%;
   -webkit-transform: translateY(30%);
           transform: translateY(30%);
-}
-
-.links-jogo div.statistics:hover p {
-  -webkit-transform: translateY(-20px);
-          transform: translateY(-20px);
 }
 /*# sourceMappingURL=GameUtils.css.map */
