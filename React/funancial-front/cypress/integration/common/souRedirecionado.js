@@ -6,3 +6,8 @@ Then('Sou redirecionado para {string}', pathParam =>{
     let path = getPath(pathParam);
     cy.url().should('eq', `${url}/${path}`);
 })
+
+Then('Devo permanecer na página {string}', pathParam =>{
+    let path = getPath(pathParam);
+    cy.url().should('eq', `${url}/${path}`);
+})
