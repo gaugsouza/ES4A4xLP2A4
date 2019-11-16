@@ -13,3 +13,9 @@ When('Preencho um ou mais campos de maneira incorreta', () =>{
     cy.get('input[name="senha"]').type('teste1234');
     cy.get('input[name="confirmaSenha"]').type('teste12345');
 })
+
+When('Clico no botão submit', () =>{
+    cy.server();
+    cy.route('POST', '/api/usuarios/cadastro', true);
+    cy.get('input[type="submit"]').click();
+})

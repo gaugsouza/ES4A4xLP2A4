@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {withRouter} from 'react-router-dom';
-
-const Cadastro = ({addUsuario, setTitle, history}) => {
+import { saveUser } from '../util/autenticacao';
+const Cadastro = ({setTitle, history}) => {
     useEffect(() =>{
         setTitle('Cadastro');
     })
@@ -36,9 +36,13 @@ const Cadastro = ({addUsuario, setTitle, history}) => {
             setMensagemErro('Senhas não correspondem');
             return false;
         }
+        let userACadastrar = {nome: usuario.nome, email: usuario.email, senha: senha}
 
-        addUsuario(usuario);
-        history.push('/cadastro-sucesso');
+        saveUser(userACadastrar)
+            .then(({data}) =>{
+                history.push("/cadastro-sucesso");
+            })
+        
     }
 
     return(
