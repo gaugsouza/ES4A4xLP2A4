@@ -1,6 +1,5 @@
 package com.projeto.funancial.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
@@ -38,26 +37,21 @@ public class LoginController {
 	
 	@PostMapping(value = "/")
 	public ResponseEntity<UsuarioCanonical> efetuaLogin(@RequestBody UsuarioCanonical usuarioCanonical) {
-		if(usuarioCanonical.getJwtToken() != null) {
-			if(!authenticationService.validaToken(usuarioCanonical))
-				return new ResponseEntity<UsuarioCanonical>(usuarioCanonical, HttpStatus.UNAUTHORIZED);	
-			
-			return new ResponseEntity<UsuarioCanonical>(usuarioCanonical, HttpStatus.OK);							
-		}
+		if(Optional.ofNullable(usuarioCanonical.getJwt()).isPresent() && 
+				authenticationService.validaToken(usuarioCanonical))
+			return new ResponseEntity<UsuarioCanonical>(usuarioCanonical, HttpStatus.OK);
 		
-		List<Usuario> usuarios = usuarioService.findAll();
-		Optional<Usuario> usuario = usuarios.stream()
-			.filter(u -> usuarioCanonical.getEmail().equals(u.getEmail())).findFirst();
+		Optional<Usuario> usuario = usuarioService.findAll().stream()
+				.filter(u -> usuarioCanonical.getEmail().equals(u.getEmail())).findFirst();			
 		
-		if(!usuario.isPresent()) {
-			return new ResponseEntity<UsuarioCanonical>(usuarioCanonical, HttpStatus.NO_CONTENT);
-		}
+		if(!usuario.isPresent())
+			return new ResponseEntity<UsuarioCanonical>(usuarioCanonical, HttpStatus.NO_CONTENT);	
 		
 		try {
 			if(!encriptadorService.validaSenha(usuarioCanonical.getSenha(), usuario.get().getSenha()))
 				return new ResponseEntity<UsuarioCanonical>(usuarioCanonical, HttpStatus.UNAUTHORIZED);
 		
-			usuarioCanonical.setJwtToken(authenticationService.geraToken(usuarioCanonical));
+			usuarioCanonical.setJwt(authenticationService.geraToken(usuarioCanonical));
 			
 			return new ResponseEntity<UsuarioCanonical>(usuarioCanonical, HttpStatus.OK);
 		} catch(EncriptadorServiceException e) {

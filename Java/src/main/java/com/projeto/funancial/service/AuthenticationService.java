@@ -1,13 +1,13 @@
 package com.projeto.funancial.service;
 
-import static com.projeto.funancial.util.JWTUtil.createJwtToken;
-import static com.projeto.funancial.util.JWTUtil.isJwtTokenValid;
+import static com.projeto.funancial.util.JWTUtil.createJwt;
+import static com.projeto.funancial.util.JWTUtil.isJwtValid;
 
 import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.exceptions.JWTCreationException;
-import com.projeto.funancial.ApplicationConfig;
 import com.projeto.funancial.canonical.UsuarioCanonical;
+import com.projeto.funancial.configuration.ApplicationConfig;
 import com.projeto.funancial.exception.AuthenticationServiceException;
 
 /**
@@ -35,7 +35,7 @@ public class AuthenticationService {
 	 */
 	public String geraToken(UsuarioCanonical usuarioCanonical) throws AuthenticationServiceException {	
 		try {
-			return createJwtToken(this.config.getJwtSecret(), usuarioCanonical.get_id().toHexString());		
+			return createJwt(this.config.getJwtSecret(), usuarioCanonical.get_id().toHexString());		
 		} catch(JWTCreationException e) {
 			throw new AuthenticationServiceException("Erro durante a criação do token.", e.getCause()); 
 		}	
@@ -49,6 +49,6 @@ public class AuthenticationService {
 	 * @return Boolean - Retorna verdadeiro caso o token seja valido em relação ao usuário.
 	 */
 	public Boolean validaToken(UsuarioCanonical usuarioCanonical) {
-		return isJwtTokenValid(this.config.getJwtSecret(), usuarioCanonical.get_id().toHexString(), usuarioCanonical.getJwtToken());		
+		return isJwtValid(this.config.getJwtSecret(), usuarioCanonical.get_id().toHexString(), usuarioCanonical.getJwt());		
 	}
 }

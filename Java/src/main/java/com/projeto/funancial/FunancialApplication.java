@@ -1,6 +1,6 @@
 package com.projeto.funancial;
 
-import static com.projeto.funancial.ConfigurationPropertyFactory.getConfiguration;
+import static com.projeto.funancial.configuration.ConfigurationPropertyFactory.getConfiguration;
 
 import org.springframework.boot.SpringApplication;
 

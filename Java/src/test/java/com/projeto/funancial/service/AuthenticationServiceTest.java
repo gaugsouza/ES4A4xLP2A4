@@ -15,8 +15,8 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.projeto.funancial.ApplicationConfig;
 import com.projeto.funancial.canonical.UsuarioCanonical;
+import com.projeto.funancial.configuration.ApplicationConfig;
 import com.projeto.funancial.exception.AuthenticationServiceException;
 import com.projeto.funancial.util.JWTUtil;
 
@@ -52,7 +52,7 @@ public class AuthenticationServiceTest {
 												.build();
 		
 		when(config.getJwtSecret()).thenReturn("segredo");
-		when(JWTUtil.createJwtToken("segredo", usuarioCanonical.get_id().toHexString()))
+		when(JWTUtil.createJwt("segredo", usuarioCanonical.get_id().toHexString()))
 			.thenThrow(JWTCreationException.class);
 		//when(authenticationService.geraToken(usuarioCanonical)).thenThrow(JWTCreationException.class);
 		//exec - check					
@@ -65,7 +65,7 @@ public class AuthenticationServiceTest {
 		//config
 		UsuarioCanonical usuarioCanonical = UsuarioCanonical.builder()
 				._id(new ObjectId("5dc60e3997a7914788664b6f"))
-				.jwtToken("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9."
+				.jwt("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9."
 						+ "eyJpc3MiOiI1ZGM2MGUzOTk3YTc5MTQ3ODg2NjRiNmYifQ."
 						+ "ypqzrJMV7uNoBvgughS1Exin5qSdrTgfuhTqlhgZT58")
 				.build();
@@ -81,7 +81,7 @@ public class AuthenticationServiceTest {
 		//config
 		UsuarioCanonical usuarioCanonical = UsuarioCanonical.builder()
 				._id(ObjectId.get())
-				.jwtToken("teste")
+				.jwt("teste")
 				.build();
 		when(config.getJwtSecret()).thenReturn("segredo");
 		//exec

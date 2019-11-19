@@ -1,11 +1,6 @@
 package com.projeto.funancial.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
-
 import org.junit.Test;
-
-import com.projeto.funancial.service.EncriptadorService;
 
 public class EncriptadorServiceTest {
 	private EncriptadorService encriptadorService = new EncriptadorService();

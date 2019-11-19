@@ -1,4 +1,4 @@
-package com.projeto.funancial;
+package com.projeto.funancial.configuration;
 
 import java.io.FileInputStream;
 import java.io.IOException;
