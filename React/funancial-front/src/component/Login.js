@@ -32,6 +32,7 @@ const Login = ({setTitle, history}) => {
             history.push("/");
         }).catch(error =>{
             setMensagemErro('Usuário ou senha incoretos');
+            return false;
         })
 
         

@@ -1,14 +1,14 @@
 .links-jogo {
-  width: 648px;
-  height: 143px;
+  width: 487px;
+  height: 108px;
   position: absolute;
-  right: 40px;
-  top: 79px;
+  right: 180px;
+  top: 40px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 28px;
+  grid-gap: 18px;
 }
 
 .links-jogo div {
@@ -28,7 +28,7 @@
   top: 0;
   width: 100%;
   margin: 0;
-  padding: 30% 0;
+  padding: 25% 0;
   opacity: 0;
 }
 

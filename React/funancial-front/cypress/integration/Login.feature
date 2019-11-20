@@ -13,6 +13,15 @@ And Clico no botão submit
 Then Mensagem de "erro" deve estar visível
 And Devo permanecer na página "Login"
 
+
+Scenario: Login mal sucedido por campo não preenchido
+Given Acessei "Login"
+When Não informo um dos campos obrigatórios
+And Clico no botão submit
+Then Mensagem de "erro" deve estar visível
+And Devo permanecer na página "Login"
+
+
 # Scenario: Tela Inicial usuário não logado
 # Given Acessei "Tela Inicial"
 # And Não estou logado
