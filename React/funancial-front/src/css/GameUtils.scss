@@ -2,15 +2,16 @@ $default-bg-placa:#e4e4e4;
 $default-color-placa:#000;
 
 .links-jogo {
-    width: 487px;
+    width: 537px;
     height: 108px;
     position: absolute;
-    right: 180px;
-    top: 40px;
+    right: 132px;
+    top: 61px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 18px;
+    grid-gap: 35px;
 
+    
     & div{
         overflow: hidden;
         cursor: pointer;

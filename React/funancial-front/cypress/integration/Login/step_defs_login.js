@@ -29,7 +29,7 @@ When('Clico no botão submit', () =>{
         }
     }
     cy.server();
-    cy.route( {
+    cy.route({
             method: 'POST',
             url: '/api/usuarios/login',
             onRequest: (xhr) =>{

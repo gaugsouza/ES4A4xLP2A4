@@ -1,0 +1,69 @@
+.form-container {
+  position: relative;
+  width: 30%;
+  margin: 0 auto;
+  margin-top: 15%;
+}
+
+.form-container h3 {
+  font-size: 30px;
+  text-align: center;
+  background-color: #efefef;
+  margin: 0;
+}
+
+.form-container form {
+  padding: 10% 10%;
+  background-color: #FBE3BF;
+  display: -ms-grid;
+  display: grid;
+  border: 2px solid #efefef;
+}
+
+.form-container form label {
+  display: -ms-grid;
+  display: grid;
+  font-size: 20px;
+}
+
+.form-container form label input {
+  border: none;
+  width: 100%;
+  height: 20px;
+  margin-bottom: 15px;
+}
+
+.form-container form input[type=submit] {
+  border: none;
+  background: #6BE8AC;
+  font-size: 18px;
+  padding: 4% 0;
+  border-radius: 3px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.form-container form input[type=submit]:hover {
+  background: #adf2d1;
+}
+
+.form-container .links-uteis {
+  background: #efefef;
+  display: -ms-grid;
+  display: grid;
+  padding: 1px 25%;
+  text-align: center;
+}
+
+.form-container .links-uteis a {
+  color: #000;
+  text-decoration: none;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.form-container .links-uteis a:hover {
+  font-style: italic;
+}
+/*# sourceMappingURL=Forms.css.map */
