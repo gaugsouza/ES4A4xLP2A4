@@ -30,7 +30,7 @@ public class EncriptadorService {
      *
      * @throws EncriptadorServiceException 
      */
-	public String getSenhaEncriptada(String senha)  throws EncriptadorServiceException {
+	public String geraSenhaEncriptada(String senha)  throws EncriptadorServiceException {
 		int iterations = 1000;
 	    char[] chars = senha.toCharArray();
 	    
@@ -90,7 +90,7 @@ public class EncriptadorService {
      * @return byte[] - O salt gerado
      * @throws NoSuchAlgorithmException
      */
-	private byte[] getSalt() throws NoSuchAlgorithmException {
+	protected byte[] getSalt() throws NoSuchAlgorithmException {
 		SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
 	    byte[] salt = new byte[16];
 	    sr.nextBytes(salt);
@@ -103,7 +103,7 @@ public class EncriptadorService {
      * @param array   - O byte[] que será convertido
      * @return String - O byte[] convertido para String
      */
-	private String toHex(byte[] array) throws NoSuchAlgorithmException {
+	protected String toHex(byte[] array) {
 		BigInteger bi = new BigInteger(1, array);
 	    String hex = bi.toString(16);
 	    int paddingLength = (array.length * 2) - hex.length();
@@ -120,7 +120,7 @@ public class EncriptadorService {
     * @param hex     - A String que será convertida
     * @return byte[] - A String convertida para byte[]
     */
-	private byte[] fromHex(String hex) throws NoSuchAlgorithmException {
+	private byte[] fromHex(String hex) {
         byte[] bytes = new byte[hex.length() / 2];
         for(int i = 0; i<bytes.length ;i++) {
             bytes[i] = (byte)Integer.parseInt(hex.substring(2 * i, 2 * i + 2), 16);

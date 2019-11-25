@@ -111,7 +111,7 @@ public class UsuarioControllerTest {
 		Usuario usuario = new Usuario();
 		usuarioCanonical.setSenha("123");
 		
-		when(this.encrypt.getSenhaEncriptada(usuarioCanonical.getSenha())).thenReturn("1&2&3&");
+		when(this.encrypt.geraSenhaEncriptada(usuarioCanonical.getSenha())).thenReturn("1&2&3&");
 		when(this.transformation.convert(usuarioCanonical)).thenReturn(usuario);
 		when(this.svc.save(usuario)).thenReturn(usuario);
 		when(this.transformation.convert(usuario)).thenReturn(usuarioCanonical);		
@@ -129,7 +129,7 @@ public class UsuarioControllerTest {
 		usuarioCanonical.setSenha("123");
 		
 		when(this.transformation.convert(usuarioCanonical)).thenReturn(usuario);
-		when(this.encrypt.getSenhaEncriptada(usuarioCanonical.getSenha())).thenReturn("1&2&3&");
+		when(this.encrypt.geraSenhaEncriptada(usuarioCanonical.getSenha())).thenReturn("1&2&3&");
 		//exec
 		ResponseEntity<UsuarioCanonical> resultado = usuarioController.createUsuario(usuarioCanonical);
 		//check
@@ -143,7 +143,7 @@ public class UsuarioControllerTest {
 		UsuarioCanonical usuarioCanonical = new UsuarioCanonical();
 		usuarioCanonical.setSenha("123");
 		
-		when(this.encrypt.getSenhaEncriptada(usuarioCanonical.getSenha())).thenThrow(EncriptadorServiceException.class);
+		when(this.encrypt.geraSenhaEncriptada(usuarioCanonical.getSenha())).thenThrow(EncriptadorServiceException.class);
 		//exec
 		ResponseEntity<UsuarioCanonical> resultado = usuarioController.createUsuario(usuarioCanonical);
 		//check
@@ -157,7 +157,7 @@ public class UsuarioControllerTest {
 		UsuarioCanonical usuarioCanonical = new UsuarioCanonical();
 		usuarioCanonical.setSenha("123");
 		
-		when(this.encrypt.getSenhaEncriptada(usuarioCanonical.getSenha())).thenThrow(EncriptadorServiceException.class);
+		when(this.encrypt.geraSenhaEncriptada(usuarioCanonical.getSenha())).thenThrow(EncriptadorServiceException.class);
 		//exec
 		ResponseEntity<UsuarioCanonical> resultado = usuarioController.createUsuario(usuarioCanonical);
 		//check
@@ -174,7 +174,7 @@ public class UsuarioControllerTest {
 		usuarioCanonical.setSenha("123");
 		
 		when(this.svc.findBy_Id(usuario.get_id())).thenReturn(usuario);
-		when(this.encrypt.getSenhaEncriptada(usuarioCanonical.getSenha())).thenReturn("1&2&3&");
+		when(this.encrypt.geraSenhaEncriptada(usuarioCanonical.getSenha())).thenReturn("1&2&3&");
 		when(this.svc.save(usuario)).thenReturn(usuario);
 		when(this.transformation.convert(usuario)).thenReturn(usuarioCanonical);
 		//exec
@@ -194,7 +194,7 @@ public class UsuarioControllerTest {
 		usuarioCanonical.setSenha("123");
 		
 		when(this.svc.findBy_Id(usuario.get_id())).thenReturn(usuario);
-		when(this.encrypt.getSenhaEncriptada(usuarioCanonical.getSenha())).thenReturn("1&2&3&");
+		when(this.encrypt.geraSenhaEncriptada(usuarioCanonical.getSenha())).thenReturn("1&2&3&");
 		when(this.svc.save(usuario)).thenReturn(usuario);
 		when(this.transformation.convert(usuario)).thenReturn(usuarioCanonical);
 		//exec
@@ -247,7 +247,7 @@ public class UsuarioControllerTest {
 		usuarioCanonical.setSenha("123");
 		
 		when(this.svc.findBy_Id(usuario.get_id())).thenReturn(usuario);
-		when(this.encrypt.getSenhaEncriptada(usuarioCanonical.getSenha())).thenThrow(EncriptadorServiceException.class);
+		when(this.encrypt.geraSenhaEncriptada(usuarioCanonical.getSenha())).thenThrow(EncriptadorServiceException.class);
 		//exec
 		ResponseEntity<UsuarioCanonical> resultado = 
 				usuarioController.updateUsuario(usuario.get_id(), usuarioCanonical);
@@ -266,7 +266,7 @@ public class UsuarioControllerTest {
 		usuarioCanonical.setSenha("123");
 		
 		when(this.svc.findBy_Id(usuario.get_id())).thenReturn(usuario);
-		when(this.encrypt.getSenhaEncriptada(usuarioCanonical.getSenha())).thenThrow(EncriptadorServiceException.class);
+		when(this.encrypt.geraSenhaEncriptada(usuarioCanonical.getSenha())).thenThrow(EncriptadorServiceException.class);
 		//exec
 		ResponseEntity<UsuarioCanonical> resultado = 
 				usuarioController.updateUsuario(usuario.get_id(), usuarioCanonical);

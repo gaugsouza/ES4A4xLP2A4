@@ -85,7 +85,7 @@ public class UsuarioController {
 		String senhaEncriptada = new String();
 		
 		try {
-			 senhaEncriptada = encriptadorService.getSenhaEncriptada(usuarioCanonical.getSenha());
+			 senhaEncriptada = encriptadorService.geraSenhaEncriptada(usuarioCanonical.getSenha());
 		} catch (EncriptadorServiceException e) {
 			logger.error("Erro encontrado durante a encriptação da senha informada:\n" + e.getMessage()
 			+ "\nCausa:\n" + e.getCause());
@@ -118,7 +118,7 @@ public class UsuarioController {
 		}
 		
 		try {
-			 senhaEncriptada = encriptadorService.getSenhaEncriptada(usuarioCanonical.getSenha());
+			 senhaEncriptada = encriptadorService.geraSenhaEncriptada(usuarioCanonical.getSenha());
 		} catch (EncriptadorServiceException e) {
 			logger.error("Erro encontrado durante a encriptação da senha informada:\n" + e.getMessage()
 			+ "\nCausa:\n" + e.getCause());
