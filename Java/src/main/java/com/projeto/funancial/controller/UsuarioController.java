@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,7 @@ import com.projeto.funancial.transformation.UsuarioTransformation;
  */
 @RestController
 @RequestMapping("/usuario")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UsuarioController {
 	private UsuarioService service;
 	private UsuarioTransformation transformation;

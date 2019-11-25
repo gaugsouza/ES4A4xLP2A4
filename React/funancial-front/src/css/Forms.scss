@@ -1,0 +1,64 @@
+$default-form-bg: #FBE3BF;
+$btn-bg: #6BE8AC;
+$cinza: #efefef;
+$preto: #000;
+.form-container {
+    position: relative;
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 15%;
+    & h3{
+        font-size: 30px;
+        text-align: center;
+        background-color: $cinza;
+        margin: 0;
+    }
+    & form{
+        padding: 10% 10%;
+        background-color: $default-form-bg;
+        display: grid;
+        border: 2px solid $cinza;
+
+        & label{
+            display: grid;
+            font-size: 20px;
+
+            & input {
+                border: none;
+                width: 100%;
+                height: 20px;
+                margin-bottom: 15px;
+            }
+        }
+
+        & input[type=submit]{
+            border: none;
+            background: $btn-bg;
+            font-size: 18px;
+            padding: 4% 0;
+            border-radius: 3px;
+            transition: 0.3s;
+            cursor: pointer;
+            &:hover{
+                background: lighten($btn-bg, 15)
+            }
+        }
+
+    }
+
+    .links-uteis{
+        background: $cinza;
+        display: grid;
+        padding: 1px 25%;
+        text-align: center;
+        & a{
+            color: $preto;
+            text-decoration: none;
+            transition: 0.3s;
+            &:hover{
+                font-style: italic;
+            }
+        }
+    }
+
+}

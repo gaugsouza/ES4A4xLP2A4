@@ -1,0 +1,77 @@
+$color1: #7587FF;
+$color2: #6BE8AC;
+$color3: #FFFB82;
+$color4: #EDBA98;
+$color5: #F571FF;
+$color6: #112399;
+$color7: #82D4FF;
+$color8: #FFCC8A;
+$color9: #CC7454;
+$color10: #A9FF48;
+$color11:#879E6D;
+$color12:#FFF569;
+$color13:#271FFF;
+$color14: #3F5FCC;
+
+$default-bg: $color11;
+$floor-color: $color9;
+$wood-elements: $color8;
+$shelf-color: #FFF;
+
+
+body{ background: darken($default-bg, 20%); }
+.tela-inicial{width: 100%; height: 100%;}
+.floor{bottom: 0; width: 100%; height: 2%; background: $floor-color;}
+.container{height: 90%;width: 80%; bottom:0; margin:auto; left: 0; right:0}
+.door { height: 90%; width: 25%; background: $wood-elements; box-shadow: inset -10px 0px 5px darken($wood-elements, 10%); border-radius: 3% 3% 0 0; bottom: 0; left: 5%; z-index: 3; 
+
+    &::before{
+        width: 80%; height: 90%; margin: auto; left: 0; right: 0; top: 5%; border: 2px solid darken($wood-elements, 10%);
+    }
+
+    &::after{
+        border: 2px solid darken($wood-elements, 10%); width: 6%; height: 3%; border-radius: 50%; top: 45%; right: 15%;box-shadow: inset -2px -3px 5px  darken($wood-elements, 20%);
+    }
+}
+.placa { background:  darken($wood-elements, 30%); padding: 5% 12%; text-decoration: none; color: #000; border-radius: 3%; box-shadow: inset -2.5px -2px 5px darken($wood-elements, 40%); 
+    &.acessar{top: 15%; left: 25%; transform: rotate(-10deg); z-index:2}
+    &.acessar::before{width: 10%; height: 30%; background: #000; top: -22%; left: 45%; border-radius: 50%;}
+    &.acesso-link{top: 15%; left: 25%;transform: rotate(-10deg);opacity: 0;
+        &.login.active{top: 25%; transform: rotate(0deg);opacity: 1;}
+        &.active{top: 35%; -ms-transform: rotate(0deg); transform: rotate(10deg);opacity: 1;}
+    }
+}
+.title { width: 100%; text-align: center; animation: title-fadeIn 1s ease; }
+
+.shelf-container{width: 100%; height: 100%;}
+.shelf {z-index:2; width: 25%; background: $shelf-color; height: 10%; left: 50%; bottom: 30%; border-radius: 5px; box-shadow: inset -6px -3px 5px darken($shelf-color, 20%); 
+    &::before{width: 95%; height: 80%; border: 2px solid darken($shelf-color, 20%); left: 0; right: 0; margin: auto; bottom: 1%; top: 1%; }
+    &::after{width: 7%; height: 30%; background: $wood-elements; top: 0; bottom: 0; left: 0; right: 0; margin: auto; border-radius: 50%; border: 2px solid darken($wood-elements, 20%); }
+}
+
+.pernas{
+    width: 25%; height: 35%; bottom: -4.5%; left: 50%;
+    &::before, &::after{
+        width: 5%; height: 100%; background: linear-gradient(80deg, $shelf-color 92%, darken($shelf-color, 20%) 10%); 
+    }
+
+    &::after{right: 15%; transform: rotate(-8deg);}
+    &::before{left: 15%; transform: rotate(8deg);}
+}
+
+.frame{width: 8%; height: 15%; bottom: 39%; left: 60%; background: darken($wood-elements, 30%); transform: rotateY(-55deg) rotatex(10deg); box-shadow: inset -5px -10px 5px darken($wood-elements, 30%); border-radius: 3%;
+    &::before{width: 10%; height: 60%; background: darken($wood-elements, 30%); right: -1%; transform: rotate(-30deg); bottom: 0;}
+    &::after{width: 90%; height: 90%; border: 2px solid darken($wood-elements, 30%); background: url('../../public/picture-placeholder.jpg'); background-size: cover; background-repeat: no-repeat; background-position: top center;}
+}
+
+
+.painting { width: 20%; height: 50%; right: 10%; background: darken($wood-elements, 10%); border-radius: 50%; box-shadow: inset -5px -10px 5px darken($wood-elements, 20%); overflow: hidden;
+    &::after{width: 90%; height: 90%; background: url('../../public/frame-placeholder.png'); margin: auto; left: 0; right: 0; top: 0; bottom: 0; background-size: cover; border-radius: 50%;filter: hue-rotate(45deg)}
+}
+.tela-inicial a{cursor:pointer}
+.force-render { width: 30%; height: 100%; left: 30%; }
+
+@keyframes title-fadeIn{
+    from{opacity:0; transform: translateY(-50%);}
+    to{opacity:1; transform: translateY(0);}
+}

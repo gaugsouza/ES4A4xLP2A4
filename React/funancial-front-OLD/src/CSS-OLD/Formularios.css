@@ -1,0 +1,84 @@
+.form-container {
+  width: 80%;
+  height: 41%;
+  position: absolute;
+  top: 16%;
+  left: 16%;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  -webkit-animation: ani-form 0.3s linear;
+          animation: ani-form 0.3s linear;
+}
+
+.form-container * {
+  position: relative;
+}
+
+.form-container > h2 {
+  text-align: center;
+  font-size: 30px;
+}
+
+.form-container form label {
+  display: -ms-grid;
+  display: grid;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.form-container input[type="text"], .form-container .form_container input[type="password"] {
+  padding: 3px 1px;
+}
+
+.links-cadastro {
+  width: 100%;
+}
+
+.btn.form-submit {
+  font-size: 20px;
+  margin: 15px auto;
+}
+
+.links-cadastro {
+  width: 100%;
+  text-align: center;
+}
+
+.links-cadastro a {
+  text-decoration: underline;
+}
+
+.links-cadastro a:hover {
+  font-style: italic;
+}
+
+.aviso {
+  color: #CC261B;
+}
+
+@-webkit-keyframes ani-form {
+  from {
+    -webkit-transform: translateX(-20px);
+            transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes ani-form {
+  from {
+    -webkit-transform: translateX(-20px);
+            transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+/*# sourceMappingURL=Formularios.css.map */
