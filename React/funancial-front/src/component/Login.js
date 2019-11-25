@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {withRouter} from 'react-router-dom';
 import {logarUsuario} from '../util/autenticacao';
+import { Link } from 'react-router-dom';
+import '../css/Forms.css'
 const Login = ({setTitle, history}) => {
     useEffect(() =>{
         setTitle('Login');
@@ -32,13 +34,15 @@ const Login = ({setTitle, history}) => {
             history.push("/");
         }).catch(error =>{
             setMensagemErro('Usuário ou senha incoretos');
+           // return false;
         })
 
         
     }
 
     return(
-        <div className="login-form">
+        <div className="login-form form-container">
+            <h3>Login</h3>
             <form method="post" onSubmit={handleSubmit}>
                 <label>
                     <span>E-mail:</span>
@@ -51,6 +55,10 @@ const Login = ({setTitle, history}) => {
                 <span>{mensagemErro}</span>
                 <input type="submit" name="enviar" value="Entrar"/>
             </form>
+            <div className="links-uteis">
+                <a href="#">Esqueci a senha</a>
+                <Link to="cadastro">Não sou cadastrado</Link>
+            </div>
         </div>
     )
 }

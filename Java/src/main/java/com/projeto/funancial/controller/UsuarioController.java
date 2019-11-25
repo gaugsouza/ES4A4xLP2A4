@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import com.projeto.funancial.repository.UsuarioRepository;
 
 @RestController
 @RequestMapping("/usuario")
+@CrossOrigin(origins="http://localhost:3000")
 public class UsuarioController {
 	@Autowired
 	private UsuarioRepository repository;

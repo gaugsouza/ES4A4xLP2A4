@@ -1,5 +1,4 @@
 import {When}  from 'cypress-cucumber-preprocessor/steps';
-import * as autenticacao from '../../../src/util/autenticacao';
 const usuarioMock = {
     email: "teste@teste.com.br",
     senha: "teste1234"
@@ -15,50 +14,32 @@ When('Informar usuário ou senha inválidos', () =>{
     cy.get('input[name="senha"]').type("lskjaddgdsg");
 });
 
-When('Clico no botão submit', () =>{
-   /* const validarUsuario = usuario =>{
-        cy.log('usuario: ', usuario);
-        let promise = new Promise((resolve, reject) =>{
-            if(usuario.email === usuarioMock.email && usuario.senha === usuarioMock.senha){
-                resolve({
-                    data:usuario
-                });
-            }else{
-                reject(new Error('Usuário ou senha incorretos'));
-            }
-        });
-        return promise;
-    }*/
-    cy.server();cy.route({
-        method: 'POST',
-        url: '/api/usuarios/login',
-        status: 200,
-        onRequest: (xhr) =>{
-            let {usuario} = xhr.request.body;
-            if(usuario.email === usuarioMock.email && usuario.senha === usuarioMock.senha){
-                return xhr;
-            }else{
-                throw new Error('Usuario ou senha incorretos');
-            }
-        },
-        onResponse: (xhr) =>{
-            return xhr;
-        }
-    });
+When('Não informo um dos campos obrigatórios', () =>{
+    cy.get('input[name="email"]').type(usuarioMock.email);
+});
 
-    
-    /*cy.stub(autenticacao, 'logarUsuario', (usuario) =>{
-        let promise = new Promise((resolve, reject) =>{
-            if(usuario.email === usuarioMock.email && usuario.senha === usuarioMock.senha){
-                resolve({
-                    data:usuario
-                });
-            }else{
-                reject(new Error('Usuário ou senha incorretos'));
-            }
+
+When('Clico no botão submit', () =>{
+    var usuarioAutenticado = {};
+    const checkUsuario = usuario => {
+        if(usuario.email === usuarioMock.email && usuario.senha === usuarioMock.senha){
+            return {data:usuario}
+        }else{
+            throw new Error('Email ou senha incorretos');
+        }
+    }
+    cy.server();
+    cy.route({
+            method: 'POST',
+            url: '/api/usuarios/login',
+            onRequest: (xhr) =>{
+                let body = xhr.request.body;
+                console.log(body)
+                usuarioAutenticado = checkUsuario(body);
+                console.log(usuarioAutenticado);
+            },
+            response: usuarioAutenticado
         });
-        return promise;
-    });*/
     cy.get('input[type="submit"]').click();
 
 });

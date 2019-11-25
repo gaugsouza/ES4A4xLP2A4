@@ -29,6 +29,6 @@ When('Não preencho um dos campos obrigatórios', () =>{
 
 When('Clico no botão submit', () =>{
     cy.server();
-    cy.route('POST', '/api/usuarios/cadastro', usuario);
+    cy.route('POST', '/usuario/', usuario);
     cy.get('input[type="submit"]').click();
 });

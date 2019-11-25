@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {withRouter} from 'react-router-dom';
 import { saveUser } from '../util/autenticacao';
+import { Link } from 'react-router-dom';
 const Cadastro = ({setTitle, history}) => {
     useEffect(() =>{
         setTitle('Cadastro');
@@ -46,7 +47,8 @@ const Cadastro = ({setTitle, history}) => {
     }
 
     return(
-        <div className="cadastro-form">
+        <div className="cadastro-form form-container">
+            <h3>Cadastro</h3>
             <form method="POST" onSubmit={handleSubmit}>
                 <label>
                     <span>Nome: </span>
@@ -67,6 +69,9 @@ const Cadastro = ({setTitle, history}) => {
                 <span className="erro">{mensagemErro}</span>
                 <input type="submit" name="enviar" value="Cadastrar"/>
             </form>
+            <div className="links-uteis">
+                <Link to="login">Já sou cadastrado</Link>
+            </div>
         </div>
     );
 };
