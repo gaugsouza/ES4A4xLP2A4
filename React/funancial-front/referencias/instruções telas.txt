@@ -1,0 +1,8 @@
+- Tela Inicial:
+-- Ao entrar, só botão de login, cadastro e link "Sobre" visíveis (Caso não esteja logado)
+-- Tela de cadastro>
+--- Ao término, renderizar sobre o formulário uma mensagem de ok
+-- Tela de Login
+--- Caso dê certo, enviar para tela inicial, com o botão de login e cadastro não visíveis
+-- Sobre, Estatísticas e Perfil:
+--- Renderizar componente em "modal" na tela
