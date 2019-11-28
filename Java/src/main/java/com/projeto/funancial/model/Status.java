@@ -24,8 +24,11 @@ public class Status {
 	public static final Integer NIVEL_INICIAL = 1;
 	public static final Double EXP_INICIAL = 0.0d;
 	
+	@Builder.Default
 	private BigDecimal dinheiro = DINHEIRO_INICIAL;
+	@Builder.Default
 	private Integer nivel = NIVEL_INICIAL;
+	@Builder.Default
 	private Double experiencia = EXP_INICIAL;
 	
 }

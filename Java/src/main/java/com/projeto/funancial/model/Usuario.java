@@ -29,7 +29,8 @@ public class Usuario {
 	private String nome;
 	private String sobrenome;
 	private String senha;
-	private Status status;
+	@Builder.Default
+	private Status status = new Status();
 	
 	public BigDecimal getDinheiro() {
 		return getStatus().getDinheiro();
