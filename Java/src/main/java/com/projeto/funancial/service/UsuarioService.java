@@ -11,7 +11,7 @@ import com.projeto.funancial.repository.UsuarioRepository;
 
 /**
  * A classe <code>UsuarioService</code> é responsável por manipular as operações CRUD 
- * (Create, Retrieve, Update and Delete)
+ * (Create, Retrieve, Update and Delete) relativas ao repositório <code>UsuarioService</code>
  *
  * @author guilhermeguis@outlook.com
  * @version 1.0

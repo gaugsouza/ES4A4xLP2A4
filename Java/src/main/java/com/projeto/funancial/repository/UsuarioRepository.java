@@ -7,7 +7,7 @@ import com.projeto.funancial.model.Usuario;
 
 /**
  * A interface <code>UsuarioRepository</code> é utilizada para representar as operações CRUD 
- * (Create, Retrieve, Update and Delete) da interface 
+ * (Create, Retrieve, Update and Delete) relativas à collection usuario da interface 
  * <code>org.springframework.data.mongodb.repository.MongoRepository</code>.
  *
  * @author guilhermeguis@outlook.com
