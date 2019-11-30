@@ -31,7 +31,7 @@ When('Clico no botão submit', () =>{
     cy.server();
     cy.route({
             method: 'POST',
-            url: '/api/usuarios/login',
+            url: 'http://localhost:8080/login',
             onRequest: (xhr) =>{
                 let body = xhr.request.body;
                 console.log(body)

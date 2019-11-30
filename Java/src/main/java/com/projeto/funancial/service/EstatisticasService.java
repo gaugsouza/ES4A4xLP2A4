@@ -1,8 +1,11 @@
 package com.projeto.funancial.service;
 
+import org.springframework.stereotype.Service;
+
 import com.projeto.funancial.model.Status;
 import com.projeto.funancial.model.Usuario;
 
+@Service
 public class EstatisticasService {
 	public EstatisticasService() {
 	}

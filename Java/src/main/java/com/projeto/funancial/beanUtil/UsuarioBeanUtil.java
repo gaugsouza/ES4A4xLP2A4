@@ -48,6 +48,7 @@ public class UsuarioBeanUtil {
 				.senha(usuario.getSenha())
 				.sobrenome(usuario.getSobrenome())
 				.status(usuario.getStatus())
+				._id(usuario.get_id())//Lembrar de remover isso se der ruim
 				.build();
 	}
 }
