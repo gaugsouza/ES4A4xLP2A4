@@ -1,6 +1,5 @@
 package com.projeto.funancial.service;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.math.BigDecimal;
@@ -54,21 +53,6 @@ public class EstatisticaServiceTest {
 	}
 
 	@Test
-	public void deve_retornar_valor_menor_do_que_dinheiro_inicial() {
-		// config
-		Usuario usuario = new Usuario();
-		usuario.setStatus(new Status());
-		Double dinheiroInicial = usuario.getDinheiro().doubleValue();
-
-		// exec
-		Double estatisticaDinheiro = service.gerarEstatisticaDinheiro(usuario);
-		// check
-		Boolean isEstatisticaMenorQueDinheiroInicial = dinheiroInicial > estatisticaDinheiro;
-		assertTrue(isEstatisticaMenorQueDinheiroInicial);
-
-	}
-
-	@Test
 	public void deve_retornar_zero_no_dinheiro() {
 		// config
 		Usuario usuario = new Usuario();
@@ -78,6 +62,22 @@ public class EstatisticaServiceTest {
 		Double estatisticaDinheiro = service.gerarEstatisticaDinheiro(usuario);
 		// check
 		assertEquals(0d, estatisticaDinheiro);
+	}
+
+	@Test
+	public void deve_retornar_valor_negativo() {
+		// config
+		Usuario usuario = new Usuario();
+		Status status = new Status();
+		status.setDinheiro(BigDecimal.valueOf(20d));
+		usuario.setStatus(status);
+
+		Double valorEsperado = 20 - Status.DINHEIRO_INICIAL.doubleValue();
+
+		// exec
+		Double estatisticaDinheiro = service.gerarEstatisticaDinheiro(usuario);
+		// check
+		assertEquals(valorEsperado, estatisticaDinheiro);
 	}
 
 }

@@ -12,15 +12,13 @@ public class EstatisticasService {
 
 	public Double gerarEstatisticaDinheiro(Usuario usuario) {
 		Double dinheiroAtual = usuario.getDinheiro().doubleValue();
-		Double diferencaDinheiro = dinheiroAtual >= Status.DINHEIRO_INICIAL.doubleValue()
-				? dinheiroAtual - Status.DINHEIRO_INICIAL.doubleValue()
-				: Status.DINHEIRO_INICIAL.doubleValue() - dinheiroAtual;
-		return diferencaDinheiro;
+		Double dinheiroEstatistica = dinheiroAtual - Status.DINHEIRO_INICIAL.doubleValue(); 
+		return dinheiroEstatistica;
 	}
 
 	public Integer gerarEstatisticaNivel(Usuario usuario) {
 		Integer nivelAtual = usuario.getNivel();
-		Integer diferencaNivel = nivelAtual - Status.NIVEL_INICIAL;
-		return diferencaNivel;
+		Integer nivelEstatistica = nivelAtual - Status.NIVEL_INICIAL;
+		return nivelEstatistica;
 	}
 }
