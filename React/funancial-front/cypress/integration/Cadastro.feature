@@ -19,3 +19,10 @@ When Não preencho um dos campos obrigatórios
 And Clico no botão submit
 Then Mensagem de "erro" deve estar visível
 And Devo permanecer na página "Cadastro"
+
+Scenario: Cadastro mal sucedido por e-mail já cadastrado
+Given Acessei "Cadastro"
+When insiro e-mail já cadastrado
+And Clico no botão submit
+Then Mensagem de "erro" deve estar visível
+And Devo permanecer na página "Cadastro"

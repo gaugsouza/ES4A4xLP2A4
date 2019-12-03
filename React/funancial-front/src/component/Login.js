@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom';
 import {logarUsuario} from '../util/autenticacao';
 import { Link } from 'react-router-dom';
 import '../css/Forms.css'
+import { nullKeyValidator } from '../util/nullKeyValidator'
 const Login = ({setTitle, history}) => {
     useEffect(() =>{
         setTitle('Login');
@@ -21,23 +22,19 @@ const Login = ({setTitle, history}) => {
     }
 
     const handleSubmit = e =>{
-        e.preventDefault();
-        for(let key in usuario){
-            if(usuario[key] === null){
-                setMensagemErro(`Campo de ${key.charAt(0).toUpperCase() + key.slice(1)} não pode estar vazio`);
-                return false;
-            }
-        }
-
-        logarUsuario(usuario)
-        .then(({data}) =>{
-            history.push("/");
-        }).catch(error =>{
-            setMensagemErro('Usuário ou senha incoretos');
-           // return false;
-        })
-
-        
+        try{
+            e.preventDefault();
+            nullKeyValidator(usuario)    
+            logarUsuario(usuario)
+            .then(({data}) =>{
+                console.log(data);
+                history.push("/");
+            }).catch(error =>{
+                setMensagemErro(error.message);
+            })
+        }catch(e){
+            setMensagemErro(e.message);
+        }        
     }
 
     return(

@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ import com.projeto.funancial.transformation.UsuarioTransformation;
 
 @RestController
 @RequestMapping("/login")
+@CrossOrigin(origins = "http://localhost:3000")
 public class LoginController {
 	private UsuarioService usuarioService;
 	private EncriptadorService encriptadorService;
@@ -58,12 +60,12 @@ public class LoginController {
 			
 			return new ResponseEntity<UsuarioCanonical>(usuarioCanonical, HttpStatus.OK);
 		} catch(EncriptadorServiceException e) {
-			logger.error("Erro encontrado durante a validação da senha informada:\n" + e.getMessage()
+			logger.error("Erro encontrado durante a validaï¿½ï¿½o da senha informada:\n" + e.getMessage()
 					+ "\nCausa:\n" + e.getCause());
 			
 			return new ResponseEntity<UsuarioCanonical>(usuarioCanonical, HttpStatus.INTERNAL_SERVER_ERROR);
 		} catch(AuthenticationServiceException e) {
-			logger.error("Erro encontrado durante a geração de token: \n" + e.getMessage()
+			logger.error("Erro encontrado durante a geraï¿½ï¿½o de token: \n" + e.getMessage()
 			+ "\nCausa:\n" + e.getCause());
 			
 			return new ResponseEntity<UsuarioCanonical>(usuarioCanonical, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -86,12 +88,12 @@ public class LoginController {
 					usuarioTransformation.convert(usuarioService.save(usuarioTransformation.convert(usuarioCanonical))),
 					HttpStatus.OK);
 		} catch(EncriptadorServiceException e) {
-			logger.error("Erro encontrado durante a geração da senha informada:\n" + e.getMessage()
+			logger.error("Erro encontrado durante a geraï¿½ï¿½o da senha informada:\n" + e.getMessage()
 			+ "\nCausa:\n" + e.getCause());
 	
 			return new ResponseEntity<UsuarioCanonical>(usuarioCanonical, HttpStatus.INTERNAL_SERVER_ERROR); 
 		} catch (AuthenticationServiceException  e) {
-			logger.error("Erro encontrado durante a geração de token: \n" + e.getMessage()
+			logger.error("Erro encontrado durante a geraï¿½ï¿½o de token: \n" + e.getMessage()
 			+ "\nCausa:\n" + e.getCause());
 			
 			return new ResponseEntity<UsuarioCanonical>(usuarioCanonical, HttpStatus.INTERNAL_SERVER_ERROR);

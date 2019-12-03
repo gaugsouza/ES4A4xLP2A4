@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {withRouter} from 'react-router-dom';
 import { saveUser } from '../util/autenticacao';
 import { Link } from 'react-router-dom';
+import { nullKeyValidator } from '../util/nullKeyValidator'
+import { verificarSenhas } from '../util/validaInfos'
 const Cadastro = ({setTitle, history}) => {
     useEffect(() =>{
         setTitle('Cadastro');
@@ -24,26 +26,24 @@ const Cadastro = ({setTitle, history}) => {
 
     
     const handleSubmit = e =>{
-        e.preventDefault();
-        for(let key in usuario){
-            if(usuario[key] === null && key !== 'confirmaSenha'){
-                setMensagemErro(`Campo de ${key.charAt(0).toUpperCase() + key.slice(1)} não pode ser nulo`);
-                return false;
-            }
-        }
-        let {senha, confirmaSenha} = usuario;
-
-        if(senha !== confirmaSenha){
-            setMensagemErro('Senhas não correspondem');
-            return false;
-        }
-        let userACadastrar = {nome: usuario.nome, email: usuario.email, senha: senha}
-
-        saveUser(userACadastrar)
+        try{
+            e.preventDefault();
+            nullKeyValidator(usuario);
+            let {senha, confirmaSenha} = usuario;
+            verificarSenhas(senha, confirmaSenha);
+            let userACadastrar = {nome: usuario.nome, email: usuario.email, senha: senha}
+            saveUser(userACadastrar)
             .then(({data}) =>{
+                console.log(data);
                 history.push("/cadastro-sucesso");
             })
-        
+            .catch(error =>{
+                console.log(error);
+                setMensagemErro(error.message);
+            })
+        }catch(e){
+            setMensagemErro(e.message);
+        }        
     }
 
     return(
