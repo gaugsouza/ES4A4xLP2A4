@@ -8,6 +8,7 @@ import com.projeto.funancial.repository.UsuarioRepository;
 
 public class StatusService {
 
+	private static final int EXP_PARA_PASSAR_DE_NIVEL = 100;
 	private UsuarioRepository usuarioRepository;
 
 	public StatusService(UsuarioRepository repository) {
@@ -18,9 +19,9 @@ public class StatusService {
 		Status statusUsuario = usuario.getStatus();
 		Double experienciaAtualizada = statusUsuario.getExperiencia() + experienciaGanha;
 		Integer nivel = statusUsuario.getNivel();
-		if (experienciaAtualizada > 100) {
+		if (experienciaAtualizada > EXP_PARA_PASSAR_DE_NIVEL) {
 			nivel += 1;
-			experienciaAtualizada -= 100;
+			experienciaAtualizada -= EXP_PARA_PASSAR_DE_NIVEL;
 		}
 		statusUsuario.setNivel(nivel);
 		statusUsuario.setExperiencia(experienciaAtualizada);

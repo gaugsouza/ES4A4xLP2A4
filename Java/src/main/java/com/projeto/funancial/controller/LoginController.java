@@ -24,7 +24,7 @@ import com.projeto.funancial.transformation.UsuarioTransformation;
 
 @RestController
 @RequestMapping("/login")
-@CrossOrigin(origins =  "http://localhost:3000" )
+@CrossOrigin(origins =  "*" )
 public class LoginController {
 	private UsuarioService usuarioService;
 	private EncriptadorService encriptadorService;
@@ -41,7 +41,7 @@ public class LoginController {
 
 	private final Logger logger = LogManager.getLogger(LoginController.class);
 
-	@PostMapping(value = "/")
+	@PostMapping(value = "")
 	public ResponseEntity<UsuarioCanonical> efetuaLogin(@RequestBody UsuarioCanonical usuarioCanonical) {
 		if (Optional.ofNullable(usuarioCanonical.getJwt()).isPresent()
 				&& authenticationService.validaToken(usuarioCanonical))
@@ -57,9 +57,10 @@ public class LoginController {
 			if (!encriptadorService.validaSenha(usuarioCanonical.getSenha(), usuario.get().getSenha()))
 				return new ResponseEntity<UsuarioCanonical>(usuarioCanonical, HttpStatus.UNAUTHORIZED);
 
-			usuarioCanonical.setJwt(authenticationService.geraToken(usuarioCanonical));
+			UsuarioCanonical usuarioConvert = usuarioTransformation.convert(usuario.get());			
+			usuarioConvert.setJwt(authenticationService.geraToken(usuarioConvert));
 
-			return new ResponseEntity<UsuarioCanonical>(usuarioCanonical, HttpStatus.OK);
+			return new ResponseEntity<UsuarioCanonical>(usuarioConvert, HttpStatus.OK);
 		} catch (EncriptadorServiceException e) {
 			logger.error("Erro encontrado durante a valida��o da senha informada:\n" + e.getMessage() + "\nCausa:\n"
 					+ e.getCause());
