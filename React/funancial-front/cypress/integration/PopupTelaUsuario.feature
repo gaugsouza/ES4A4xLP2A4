@@ -17,7 +17,7 @@ Then Mensagem de "sucesso" deve estar visível
 
 Scenario: Alterar nome
 Given Acessei "Perfil"
-When Digito nome na caixa "Nome"
+When Digito na caixa "Nome"
 And Clico no link com texto "Alterar"
 Then Mensagem de "sucesso" deve estar visível
 
