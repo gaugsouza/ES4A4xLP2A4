@@ -24,13 +24,19 @@ const Login = ({setTitle, history}) => {
     const handleSubmit = e =>{
         try{
             e.preventDefault();
-            nullKeyValidator(usuario)    
+            nullKeyValidator(usuario);    
             logarUsuario(usuario)
             .then(({data}) =>{
-                console.log(data);
-                history.push("/");
+                if(data !== "" && data !== null && data !== undefined){
+                    console.log(data);
+                    let usuarioLogado = {email: data.email, jwt: data.jwt, nome: data.nome}
+                    localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
+                    history.push("/");
+                }else{
+                    setMensagemErro("Usuário não encontrado");
+                }
             }).catch(error =>{
-                setMensagemErro(error.message);
+                setMensagemErro("Um erro ocorreu");
             })
         }catch(e){
             setMensagemErro(e.message);
@@ -53,7 +59,6 @@ const Login = ({setTitle, history}) => {
                 <input type="submit" name="enviar" value="Entrar"/>
             </form>
             <div className="links-uteis">
-                <a href="#">Esqueci a senha</a>
                 <Link to="cadastro">Não sou cadastrado</Link>
             </div>
         </div>
