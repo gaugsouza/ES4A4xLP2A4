@@ -31,7 +31,7 @@ When('Clico no botão submit', () =>{
     cy.server();
     cy.route({
             method: 'POST',
-            url: 'http://localhost:8080/login',
+            url: 'https://funancial-backend.herokuapp.com/login',
             onRequest: (xhr) =>{
                 let body = xhr.request.body;
                 console.log(body)
