@@ -1,0 +1,345 @@
+{
+   "historias":[
+      {
+         "historia":{
+            "titulo":"Você viu uma pessoa derrubando R$ 10 na rua...",
+            "opcoes":[
+               {
+                  "opcao":{
+                     "descricao":"Pego para mim",
+                     "vida":1,
+                     "experiencia":-5,
+                     "dinheiro":10
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Aviso para a pessoa",
+                     "vida":10,
+                     "experiencia":10,
+                     "dinheiro":0
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Ignoro",
+                     "vida":1,
+                     "experiencia":0,
+                     "dinheiro":0
+                  }
+               }
+            ]
+         }
+      },
+      {
+         "historia":{
+            "titulo":"Seu responsável pediu ajuda com os afazeres domésticos...",
+            "opcoes":[
+               {
+                  "opcao":{
+                     "descricao":"Ajudo",
+                     "vida":20,
+                     "experiencia":20,
+                     "dinheiro":20
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Recuso pois tenho lição de casa",
+                     "vida":5,
+                     "experiencia":5,
+                     "dinheiro":0
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Ignoro e saio para brincar",
+                     "vida":-10,
+                     "experiencia":-10,
+                     "dinheiro":0
+                  }
+               }
+            ]
+         }
+      },
+      {
+         "historia":{
+            "titulo":"Seu ônibus quebrou à alguns quilômetros de sua casa...",
+            "opcoes":[
+               {
+                  "opcao":{
+                     "descricao":"Volto para casa a pé",
+                     "vida":10,
+                     "experiencia":10,
+                     "dinheiro":0
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Volto para casa de carro de aplicativo",
+                     "vida":10,
+                     "experiencia":10,
+                     "dinheiro":-20
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Volto para casa de ônibus",
+                     "vida":10,
+                     "experiencia":10,
+                     "dinheiro":-5
+                  }
+               }
+            ]
+         }
+      },
+      {
+         "historia":{
+            "titulo":"Não teve almoço na sua escola por conta de problemas de logística...",
+            "opcoes":[
+               {
+                  "opcao":{
+                     "descricao":"Como num restaurante de fast food",
+                     "vida":5,
+                     "experiencia":-10,
+                     "dinheiro":-30
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Como num restaurante de prato feito",
+                     "vida":5,
+                     "experiencia":5,
+                     "dinheiro":-20
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Aguento e como apenas quando chego em casa",
+                     "vida":-15,
+                     "experiencia":5,
+                     "dinheiro":0
+                  }
+               }
+            ]
+         }
+      },
+      {
+         "historia":{
+            "titulo":"Seu amigo está fazendo aniversário...",
+            "opcoes":[
+               {
+                  "opcao":{
+                     "descricao":"Compro um presente para ele",
+                     "vida":20,
+                     "experiencia":20,
+                     "dinheiro":-50
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Dou os parabéns porém não compro presente",
+                     "vida":10,
+                     "experiencia":10,
+                     "dinheiro":0
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Finjo que esqueci da data",
+                     "vida":-10,
+                     "experiencia":-10,
+                     "dinheiro":0
+                  }
+               }
+            ]
+         }
+      },
+      {
+         "historia":{
+            "titulo":"Está muito quente e tem uma loja de sorvetes próximo à você...",
+            "opcoes":[
+               {
+                  "opcao":{
+                     "descricao":"Volto para casa e mastigo uma pedra de gelo",
+                     "vida":10,
+                     "experiencia":5,
+                     "dinheiro":0
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Compro um picolé barato",
+                     "vida":10,
+                     "experiencia":5,
+                     "dinheiro":-5
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Compro um sorvete caro",
+                     "vida":10,
+                     "experiencia":5,
+                     "dinheiro":-20
+                  }
+               }
+            ]
+         }
+      },
+      {
+         "historia":{
+            "titulo":"Seu fone de ouvido quebrou...",
+            "opcoes":[
+               {
+                  "opcao":{
+                     "descricao":"Compro um fone novo caro",
+                     "vida":10,
+                     "experiencia":0,
+                     "dinheiro":-70
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Compro um fone novo barato",
+                     "vida":10,
+                     "experiencia":0,
+                     "dinheiro":-10
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Não compro um fone novo",
+                     "vida":10,
+                     "experiencia":0,
+                     "dinheiro":0
+                  }
+               }
+            ]
+         }
+      },
+      {
+         "historia":{
+            "titulo":"Você encontrou o tênis que queria com 20% de desconto...",
+            "opcoes":[
+               {
+                  "opcao":{
+                     "descricao":"Compro sem pestanejar",
+                     "vida":15,
+                     "experiencia":10,
+                     "dinheiro":-80
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Calculo se não irá faltar dinheiro para o resto do mês e compro",
+                     "vida":20,
+                     "experiencia":20,
+                     "dinheiro":-80
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Não compro",
+                     "vida":1,
+                     "experiencia":1,
+                     "dinheiro":10
+                  }
+               }
+            ]
+         }
+      },
+      {
+         "historia":{
+            "titulo":"O ventilador do seu quarto quebrou...",
+            "opcoes":[
+               {
+                  "opcao":{
+                     "descricao":"Aguento ficar sem o ventilador",
+                     "vida":10,
+                     "experiencia":5,
+                     "dinheiro":0
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Compro um ventilador barato",
+                     "vida":15,
+                     "experiencia":10,
+                     "dinheiro":-60
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Compro um ventilador caro",
+                     "vida":1,
+                     "experiencia":1,
+                     "dinheiro":5
+                  }
+               }
+            ]
+         }
+      },
+      {
+         "historia":{
+            "titulo":"Seu celular está com pouco espaço de memória...",
+            "opcoes":[
+               {
+                  "opcao":{
+                     "descricao":"Apago alguns arquivos e aplicativos para segurar as pontas com esse celular",
+                     "vida":20,
+                     "experiencia":20,
+                     "dinheiro":0
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Compro um celular barato",
+                     "vida":20,
+                     "experiencia":20,
+                     "dinheiro":-300
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Compro um celular caro ",
+                     "vida":2,
+                     "experiencia":2,
+                     "dinheiro":20
+                  }
+               }
+            ]
+         }
+      },
+      {
+         "historia":{
+            "titulo":"Você tem um passeio na escola cujo prazo de entrega do valor para a participação (R$50) é até hoje...",
+            "opcoes":[
+               {
+                  "opcao":{
+                     "descricao":"Aceito a derrota e não vou ao passeio",
+                     "vida":5,
+                     "experiencia":-10,
+                     "dinheiro":0
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Pago o passeio com meu dinheiro",
+                     "vida":10,
+                     "experiencia":10,
+                     "dinheiro":-50
+                  }
+               },
+               {
+                  "opcao":{
+                     "descricao":"Encho o saco dos meus responsáveis até conseguir o dinheiro do passeio",
+                     "vida":5,
+                     "experiencia":-30,
+                     "dinheiro":0
+                  }
+               }
+            ]
+         }
+      }
+   ]
+}

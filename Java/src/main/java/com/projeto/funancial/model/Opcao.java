@@ -1,10 +1,5 @@
 package com.projeto.funancial.model;
 
-import java.util.List;
-
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,8 +19,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class Opcao {
-	@Id
-	private ObjectId _id;
 	private String descricao;
-	private List<Atributo> pontos;
+	private Integer experiencia;
+	private Integer vida;
+	private Integer dinheiro;
 }

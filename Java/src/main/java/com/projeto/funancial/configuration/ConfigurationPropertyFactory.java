@@ -9,8 +9,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public abstract class ConfigurationPropertyFactory {	
-    private static ApplicationConfig config;    
-    
+    private static ApplicationConfig config;
+            
 	public static ApplicationConfig getConfiguration() {		
 		if(config == null) {
 			loadConfig();
@@ -34,5 +34,4 @@ public abstract class ConfigurationPropertyFactory {
 			logger.error("Erro durante o carregamento de configurações do arquivo application.properties");
 		}
 	}
-
 }
