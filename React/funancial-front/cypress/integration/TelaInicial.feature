@@ -4,10 +4,10 @@ Scenario: Acessar página inicial
 Given Acessei "Tela Inicial"
 Then Devo ver "Funancial - Economy for Kids" no titulo 
 
-Scenario: Acessar página de login
-Given Acessei "Tela Inicial"
-When Clico no link com texto "Login"
-Then Devo ver "Funancial - Login" no titulo 
+# Scenario: Acessar página de login
+# Given Acessei "Tela Inicial"
+# When Clico no link com texto "Login"
+# Then Devo ver "Funancial - Login" no titulo 
 
 
 Scenario: Acessar página de cadastro

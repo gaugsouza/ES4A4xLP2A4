@@ -23,4 +23,9 @@
 .access-content a:hover {
   background-color: #474afe;
 }
+
+
+.login{
+    pointer-events: none;
+}
 /*# sourceMappingURL=ElementosDeAcesso.css.map */

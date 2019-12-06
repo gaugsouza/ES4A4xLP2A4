@@ -26,3 +26,7 @@ $btn-hover-bg: darken($btn-bg, 10);
         }
     }
 }
+
+.login{
+    pointer-events: none;
+}

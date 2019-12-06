@@ -55,4 +55,38 @@ body {
 .header a:hover {
   color: #f3d6c2;
 }
+
+
+.cadastro-sucesso {
+    width: 60%;
+    background: #FFF;
+    border-color: #000;
+    border-style: dotted;
+    transform: translate(0%, 50%);
+}
+
+
+.cadastro-sucesso * {
+  text-align: center;
+  color: #000;
+}
+
+.cadastro-sucesso a {
+    display: block;
+    margin: 0 auto;
+    background: #000;
+    color: #FFF;
+    font-size: 17px;
+    transition: 0.3s;
+    text-decoration: none;
+    width: 22%;
+    padding: 1% 1%;
+    border-radius: 3px;
+    margin-bottom: 3%;
+}
+
+.cadastro-sucesso a:hover{
+ background: #FFF;
+ color: #000;
+}
 /*# sourceMappingURL=App.css.map */
