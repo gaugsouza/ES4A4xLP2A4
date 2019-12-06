@@ -3,8 +3,9 @@ package com.projeto.funancial;
 import static com.projeto.funancial.configuration.ConfigurationPropertyFactory.getConfiguration;
 
 import org.springframework.boot.SpringApplication;
-
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.projeto.funancial.configuration.HistoriaLoader;
 
 /**
  * © Copyright Beta IT 2019<br>
@@ -19,7 +20,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FunancialApplication {   		
 	public static void main(String[] args) {
-		getConfiguration();	
+		getConfiguration();
+		
+		HistoriaLoader historiaLoader = new HistoriaLoader();
+		historiaLoader.loadHistorias();
+		
 		SpringApplication.run(FunancialApplication.class, args);	
 	}
 }

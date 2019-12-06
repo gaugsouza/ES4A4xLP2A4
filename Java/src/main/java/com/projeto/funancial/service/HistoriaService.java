@@ -44,4 +44,15 @@ public class HistoriaService {
     public Historia findBy_Id(ObjectId id) {
     	return historiaRepository.findBy_id(id);
     }
+    
+    /**
+     * Salva uma história no banco de dados
+     *
+     * @param Historia historia - A história que será salva no banco de dados
+     * @return Historia - A história salva.
+     */
+    public Historia save(Historia historia) {   	
+    	return historiaRepository.save(historia);
+    }
+
 }
