@@ -24,8 +24,8 @@ public class LoginControllerTest {
 	private UsuarioService svc = Mockito.mock(UsuarioService.class);
 	private EncriptadorService encrypt = Mockito.mock(EncriptadorService.class);
 	private AuthenticationService auth = Mockito.mock(AuthenticationService.class); 
-	private UsuarioTransformation transformation = Mockito.mock(UsuarioTransformation.class);
-	private LoginController loginController = new LoginController(svc, encrypt, auth, transformation);
+	private UsuarioController usuarioController = Mockito.mock(UsuarioController.class);
+	private LoginController loginController = new LoginController(svc, encrypt, auth, usuarioController);
 	
 	@Test
 	public void efetua_login_deve_retornar_usuario_informado_quando_o_token_informado_for_valido() {
@@ -247,21 +247,8 @@ public class LoginControllerTest {
 				.email("usuarioTeste@teste.com")
 				.senha("123")
 				.build();
-		Usuario usuarioAlt = new Usuario(ObjectId.get(), "usuarioTeste2@teste.com", "Jose", "Souza", "123");
 		
-		when(svc.findAll()).thenReturn(Arrays.asList(new Usuario(), usuarioAlt));
-		when(encrypt.geraSenhaEncriptada(usuarioCanonical.getSenha())).thenReturn("1&2&3&");
-		when(auth.geraToken(usuarioCanonical)).thenReturn("tokenExemplo");
-		
-		Usuario usuario = Usuario.builder()
-				._id(usuarioCanonical.get_id())
-				.email(usuarioCanonical.getEmail())
-				.senha(usuarioCanonical.getSenha())
-				.build();
-		
-		when(transformation.convert(usuarioCanonical)).thenReturn(usuario);
-		when(svc.save(usuario)).thenReturn(usuario);
-		when(transformation.convert(usuario)).thenReturn(usuarioCanonical);
+		when(usuarioController.createUsuario(usuarioCanonical)).thenReturn(new ResponseEntity<>(usuarioCanonical, HttpStatus.OK));
 		//exec
 		ResponseEntity<UsuarioCanonical> resultado = loginController.efetuaCadastro(usuarioCanonical);
 		//check
@@ -277,21 +264,8 @@ public class LoginControllerTest {
 				.email("usuarioTeste@teste.com")
 				.senha("123")
 				.build();
-		Usuario usuarioAlt = new Usuario(ObjectId.get(), "usuarioTeste2@teste.com", "Jose", "Souza", "123");
 		
-		when(svc.findAll()).thenReturn(Arrays.asList(new Usuario(), usuarioAlt));
-		when(encrypt.geraSenhaEncriptada(usuarioCanonical.getSenha())).thenReturn("1&2&3&");
-		when(auth.geraToken(usuarioCanonical)).thenReturn("tokenExemplo");
-		
-		Usuario usuario = Usuario.builder()
-				._id(usuarioCanonical.get_id())
-				.email(usuarioCanonical.getEmail())
-				.senha(usuarioCanonical.getSenha())
-				.build();
-		
-		when(transformation.convert(usuarioCanonical)).thenReturn(usuario);
-		when(svc.save(usuario)).thenReturn(usuario);
-		when(transformation.convert(usuario)).thenReturn(usuarioCanonical);
+		when(usuarioController.createUsuario(usuarioCanonical)).thenReturn(new ResponseEntity<>(usuarioCanonical, HttpStatus.OK));
 		//exec
 		ResponseEntity<UsuarioCanonical> resultado = loginController.efetuaCadastro(usuarioCanonical);
 		//check
@@ -327,83 +301,4 @@ public class LoginControllerTest {
 		//check
 		assertEquals(HttpStatus.CONFLICT, resultado.getStatusCode());
 	}
-	
-	@Test
-	public void efetua_cadastro_mal_sucedido_por_excecao_durante_encriptar_senha_deve_retornar_usuario_informado() 
-		throws AuthenticationServiceException, EncriptadorServiceException {
-		//config
-		UsuarioCanonical usuarioCanonical = UsuarioCanonical.builder()
-				._id(ObjectId.get())
-				.email("usuarioTeste@teste.com")
-				.senha("123")												
-				.build();
-		Usuario usuarioAlt = new Usuario(ObjectId.get(), "usuarioTeste2@teste.com", "Jose", "Souza", "123");
-		
-		when(svc.findAll()).thenReturn(Arrays.asList(new Usuario(), usuarioAlt));
-		when(encrypt.geraSenhaEncriptada(usuarioCanonical.getSenha())).thenThrow(EncriptadorServiceException.class);
-		//exec
-		ResponseEntity<UsuarioCanonical> resultado = loginController.efetuaCadastro(usuarioCanonical);
-		//check
-		assertEquals(usuarioCanonical, resultado.getBody());
-	}
-	
-	@Test
-	public void efetua_cadastro_mal_sucedido_por_excecao_durante_encriptar_senha_deve_retornar_status_internal_server_error() 
-		throws AuthenticationServiceException, EncriptadorServiceException {
-		//config
-		UsuarioCanonical usuarioCanonical = UsuarioCanonical.builder()
-				._id(ObjectId.get())
-				.email("usuarioTeste@teste.com")
-				.senha("123")												
-				.build();
-		Usuario usuarioAlt = new Usuario(ObjectId.get(), "usuarioTeste2@teste.com", "Jose", "Souza", "123");
-		
-		when(svc.findAll()).thenReturn(Arrays.asList(new Usuario(), usuarioAlt));
-		when(encrypt.geraSenhaEncriptada(usuarioCanonical.getSenha())).thenThrow(EncriptadorServiceException.class);
-		//exec
-		ResponseEntity<UsuarioCanonical> resultado = loginController.efetuaCadastro(usuarioCanonical);
-		//check
-		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, resultado.getStatusCode());
-	}
-
-	@Test
-	public void efetua_cadastro_mal_sucedido_por_excecao_durante_geração_de_token_deve_retornar_usuario_informado() 
-		throws AuthenticationServiceException, EncriptadorServiceException {
-		//config
-		UsuarioCanonical usuarioCanonical = UsuarioCanonical.builder()
-				._id(ObjectId.get())
-				.email("usuarioTeste@teste.com")
-				.senha("123")												
-				.build();
-		Usuario usuarioAlt = new Usuario(ObjectId.get(), "usuarioTeste2@teste.com", "Jose", "Souza", "123");
-		
-		when(svc.findAll()).thenReturn(Arrays.asList(new Usuario(), usuarioAlt));
-		when(encrypt.geraSenhaEncriptada(usuarioCanonical.getSenha())).thenReturn("1&2&3&");
-		when(auth.geraToken(usuarioCanonical)).thenThrow(AuthenticationServiceException.class);
-		//exec
-		ResponseEntity<UsuarioCanonical> resultado = loginController.efetuaCadastro(usuarioCanonical);
-		//check
-		assertEquals(usuarioCanonical, resultado.getBody());
-	}
-	
-	@Test
-	public void efetua_cadastro_mal_sucedido_por_excecao_durante_geração_de_token_deve_retornar_status_internal_server_error() 
-		throws AuthenticationServiceException, EncriptadorServiceException {
-		//config
-		UsuarioCanonical usuarioCanonical = UsuarioCanonical.builder()
-				._id(ObjectId.get())
-				.email("usuarioTeste@teste.com")
-				.senha("123")												
-				.build();
-		Usuario usuarioAlt = new Usuario(ObjectId.get(), "usuarioTeste2@teste.com", "Jose", "Souza", "123");
-		
-		when(svc.findAll()).thenReturn(Arrays.asList(new Usuario(), usuarioAlt));
-		when(encrypt.geraSenhaEncriptada(usuarioCanonical.getSenha())).thenReturn("1&2&3&");
-		when(auth.geraToken(usuarioCanonical)).thenThrow(AuthenticationServiceException.class);
-		//exec
-		ResponseEntity<UsuarioCanonical> resultado = loginController.efetuaCadastro(usuarioCanonical);
-		//check
-		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, resultado.getStatusCode());
-	}
-
 }

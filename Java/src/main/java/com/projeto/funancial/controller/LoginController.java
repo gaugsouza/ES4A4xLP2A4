@@ -18,7 +18,6 @@ import com.projeto.funancial.model.Usuario;
 import com.projeto.funancial.service.AuthenticationService;
 import com.projeto.funancial.service.EncriptadorService;
 import com.projeto.funancial.service.UsuarioService;
-import com.projeto.funancial.transformation.UsuarioTransformation;
 
 @RestController
 @RequestMapping("/login")
@@ -26,14 +25,14 @@ public class LoginController {
 	private UsuarioService usuarioService;
 	private EncriptadorService encriptadorService;
 	private AuthenticationService authenticationService;
-	private UsuarioTransformation usuarioTransformation;
+	private UsuarioController usuarioController;
 	
 	public LoginController(UsuarioService usuarioService, EncriptadorService encriptadorService,
-			AuthenticationService authenticationService, UsuarioTransformation usuarioTransformation) {
+			AuthenticationService authenticationService, UsuarioController usuarioController) {
 		this.usuarioService = usuarioService;
 		this.encriptadorService = encriptadorService;
 		this.authenticationService = authenticationService;
-		this.usuarioTransformation = usuarioTransformation;
+		this.usuarioController = usuarioController;
 	}
 	
     private final Logger logger = LogManager.getLogger(LoginController.class);
@@ -78,23 +77,6 @@ public class LoginController {
 		if(usuario.isPresent())
 			return new ResponseEntity<UsuarioCanonical>(usuarioCanonical, HttpStatus.CONFLICT);
 		
-		try {
-			usuarioCanonical.setSenha(encriptadorService.geraSenhaEncriptada(usuarioCanonical.getSenha()));
-			usuarioCanonical.setJwt(authenticationService.geraToken(usuarioCanonical));
-			
-			return new ResponseEntity<UsuarioCanonical>(
-					usuarioTransformation.convert(usuarioService.save(usuarioTransformation.convert(usuarioCanonical))),
-					HttpStatus.OK);
-		} catch(EncriptadorServiceException e) {
-			logger.error("Erro encontrado durante a geração da senha informada:\n" + e.getMessage()
-			+ "\nCausa:\n" + e.getCause());
-	
-			return new ResponseEntity<UsuarioCanonical>(usuarioCanonical, HttpStatus.INTERNAL_SERVER_ERROR); 
-		} catch (AuthenticationServiceException  e) {
-			logger.error("Erro encontrado durante a geração de token: \n" + e.getMessage()
-			+ "\nCausa:\n" + e.getCause());
-			
-			return new ResponseEntity<UsuarioCanonical>(usuarioCanonical, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		return new ResponseEntity<UsuarioCanonical>(usuarioController.createUsuario(usuarioCanonical).getBody(), HttpStatus.OK);
 	}
 }
