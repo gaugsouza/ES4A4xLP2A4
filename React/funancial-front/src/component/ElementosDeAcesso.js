@@ -6,6 +6,7 @@ const ElementosDeAcesso = () => {
         <div className="access-content">
             <Link to="/login">Login</Link>
             <Link to="/cadastro">Cadastro</Link>
+            <Link to="/sobre">Sobre</Link>
         </div>
     );  
 };
